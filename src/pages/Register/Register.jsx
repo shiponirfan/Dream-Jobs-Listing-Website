@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import loginSvg from "../../assets/icons/Mobile login-amico.svg";
+import loginSvg from "../../assets/icons/Mobile-login-amico.svg";
 import logo from "../../assets/logo/dreamjoblogo.png";
 import logoDark from "../../assets/logo/dreamjoblogofordark.png";
 import useAuth from "../../hooks/useAuth";

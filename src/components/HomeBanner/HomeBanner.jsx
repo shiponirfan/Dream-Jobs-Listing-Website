@@ -27,10 +27,10 @@ const HomeBanner = () => {
               </div>
             </div>
             <select className="select w-28 md:w-auto select-bordered join-item focus:outline-0 dark:bg-gray-800 dark:border-gray-300">
-              <option>Remote Job</option>
-              <option>On Site Job</option>
-              <option>Hybrid</option>
-              <option>Part Time</option>
+              <option value="remote-job">Remote Job</option>
+              <option value="on-site-job">On Site Job</option>
+              <option value="hybrid">Hybrid</option>
+              <option value="part-time">Part Time</option>
             </select>
             <div className="indicator ">
               <button className="btn join-item bg-job-primary hover:bg-green-600 text-white dark:border-job-primary">
