@@ -13,6 +13,7 @@ export default {
       colors: {
         'job-primary': '#00BF63',
         'job-dark-primary': '#050a30',
+        'job-secondary': '#f1fff6',
       }
     },
   },

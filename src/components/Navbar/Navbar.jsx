@@ -14,94 +14,116 @@ const Navbar = () => {
       setTheme("light");
     }
   };
+  const navMenu = (
+    <>
+      <li className="hover:text-job-primary dark:hover:text-job-primary duration-300">
+        <NavLink
+          className={({ isActive }) => (isActive ? "text-job-primary" : "")}
+          to="/"
+        >
+          Home
+        </NavLink>
+      </li>
+      <li className="hover:text-job-primary dark:hover:text-job-primary duration-300">
+        <NavLink
+          className={({ isActive }) => (isActive ? "text-job-primary" : "")}
+          to="/all-jobs"
+        >
+          All Jobs
+        </NavLink>
+      </li>
+      <li className="hover:text-job-primary dark:hover:text-job-primary duration-300">
+        <NavLink
+          className={({ isActive }) => (isActive ? "text-job-primary" : "")}
+          to="/applied-jobs"
+        >
+          Applied Jobs
+        </NavLink>
+      </li>
+      <li className="hover:text-job-primary dark:hover:text-job-primary duration-300">
+        <NavLink
+          className={({ isActive }) => (isActive ? "text-job-primary" : "")}
+          to="/add-job"
+        >
+          Add A Job
+        </NavLink>
+      </li>
+      <li className="hover:text-job-primary dark:hover:text-job-primary duration-300">
+        <NavLink
+          className={({ isActive }) => (isActive ? "text-job-primary" : "")}
+          to="/my-jobs"
+        >
+          My Jobs
+        </NavLink>
+      </li>
+      <li className="hover:text-job-primary dark:hover:text-job-primary duration-300">
+        <NavLink
+          className={({ isActive }) => (isActive ? "text-job-primary" : "")}
+          to="/blogs"
+        >
+          Blogs
+        </NavLink>
+      </li>
+    </>
+  );
   return (
-    <div className="dark:bg-job-dark-primary dark:text-white drop-shadow-md bg-white">
+    <div className="dark:bg-job-dark-primary dark:text-white drop-shadow-md bg-white xl:py-5 py-4">
       <nav className="container mx-auto px-6 lg:px-8 flex justify-between items-center">
-        <div className="flex items-center  gap-16">
-          <div>
+        <div className="flex items-center gap-3 lg:gap-6 xl:gap-16 ">
+          {/* Mobile Menu */}
+          <div className="lg:hidden">
+            <div className="drawer">
+              <input id="my-drawer" type="checkbox" className="drawer-toggle" />
+              <div className="drawer-content btn btn-circle dark:bg-blue-950 dark:text-white dark:border-blue-950">
+                <label htmlFor="my-drawer" className="drawer-button">
+                  <svg
+                    className="swap-off fill-current"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 512 512"
+                  >
+                    <path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z" />
+                  </svg>
+                </label>
+              </div>
+              <div className="drawer-side z-50">
+                <label
+                  htmlFor="my-drawer"
+                  aria-label="close sidebar"
+                  className="drawer-overlay"
+                ></label>
+
+                <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content dark:bg-job-dark-primary dark:text-white">
+                  {navMenu}
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="xl:max-w-[300px] lg:max-w-[180px] md:max-w-[250px]">
             <img
+              className="w-full"
               src={theme === "light" ? logo : logoDark}
               alt="Dream Jobs Logo"
             />
           </div>
           <div>
-            <ul className="flex items-center gap-6 text-lg font-medium ">
-              <li className="hover:text-job-primary duration-300">
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive ? "text-job-primary" : ""
-                  }
-                  to="/"
-                >
-                  Home
-                </NavLink>
-              </li>
-              <li className="hover:text-job-primary duration-300">
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive ? "text-job-primary" : ""
-                  }
-                  to="/all-jobs"
-                >
-                  All Jobs
-                </NavLink>
-              </li>
-              <li className="hover:text-job-primary duration-300">
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive ? "text-job-primary" : ""
-                  }
-                  to="/applied-jobs"
-                >
-                  Applied Jobs
-                </NavLink>
-              </li>
-              <li className="hover:text-job-primary duration-300">
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive ? "text-job-primary" : ""
-                  }
-                  to="/add-job"
-                >
-                  Add A Job
-                </NavLink>
-              </li>
-              <li className="hover:text-job-primary duration-300">
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive ? "text-job-primary" : ""
-                  }
-                  to="/my-jobs"
-                >
-                  My Jobs
-                </NavLink>
-              </li>
-              <li className="hover:text-job-primary duration-300">
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive ? "text-job-primary" : ""
-                  }
-                  to="/blogs"
-                >
-                  Blogs
-                </NavLink>
-              </li>
+            <ul className="lg:flex items-center gap-6 xl:text-lg font-medium hidden ">
+              {navMenu}
             </ul>
           </div>
         </div>
 
-        <div className="flex justify-center items-center gap-3">
+        <div className="flex justify-center items-center xl:gap-3 gap-2">
           <label className="swap swap-rotate">
-            {/* this hidden checkbox controls the state */}
             <input
               onChange={handleThemeToggle}
               checked={theme === "light" ? false : true}
               type="checkbox"
             />
-
-            {/* sun icon */}
             <svg
-              className="swap-on fill-current w-10 h-10"
+              className="swap-on fill-current xl:w-10 xl:h-10 w-8 h-8"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
             >
@@ -110,7 +132,7 @@ const Navbar = () => {
 
             {/* moon icon */}
             <svg
-              className="swap-off fill-current w-10 h-10"
+              className="swap-off fill-current xl:w-10 xl:h-10 w-8 h-8"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
             >
@@ -118,7 +140,7 @@ const Navbar = () => {
             </svg>
           </label>
           {/* Sign Out Button */}
-          <button className="text-lg font-medium text-white bg-job-primary hover:bg-green-600 duration-300 py-3 px-7 rounded-full flex justify-center items-center gap-1">
+          <button className="hidden xl:text-lg font-medium text-white bg-job-primary hover:bg-green-600 duration-300 py-3 xl:px-7 px-3 rounded-full md:flex justify-center items-center gap-1">
             <PiSignOutBold /> Sign Out
           </button>
           {/* Profile */}
@@ -127,7 +149,7 @@ const Navbar = () => {
               tabIndex={0}
               className="cursor-pointer flex justify-center items-center gap-3"
             >
-              <label className="md:w-14 w-11 avatar cursor-pointer align-bottom">
+              <label className="md:w-14 w-12 avatar cursor-pointer align-bottom">
                 <div className="rounded-full ring-2 ring-gray-200">
                   {user?.photoURL ? (
                     <img src={user?.photoURL} />
@@ -153,7 +175,7 @@ const Navbar = () => {
               <button
                 tabIndex="-1"
                 role="menuitem"
-                className="flex w-full cursor-pointer select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start leading-tight outline-none transition-all dark:text-white hover:bg-brand-secondary hover:text-job-primary focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-brand-secondary active:bg-opacity-80 active:text-blue-gray-900"
+                className="flex w-full cursor-pointer select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start leading-tight outline-none transition-all dark:text-white hover:bg-brand-secondary hover:text-job-primary dark:hover:text-job-primary focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-brand-secondary active:bg-opacity-80 active:text-blue-gray-900"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -177,7 +199,7 @@ const Navbar = () => {
               <button
                 tabIndex="-1"
                 role="menuitem"
-                className="flex w-full cursor-pointer select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start leading-tight outline-none transition-all dark:text-white hover:bg-brand-secondary hover:text-job-primary focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-brand-secondary active:bg-opacity-80 active:text-blue-gray-900"
+                className="flex w-full cursor-pointer select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start leading-tight outline-none transition-all dark:text-white hover:bg-brand-secondary hover:text-job-primary dark:hover:text-job-primary focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-brand-secondary active:bg-opacity-80 active:text-blue-gray-900"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -206,7 +228,7 @@ const Navbar = () => {
               <button
                 tabIndex="-1"
                 role="menuitem"
-                className="flex w-full cursor-pointer select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start leading-tight outline-none transition-all dark:text-white hover:bg-brand-secondary hover:text-job-primary focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-brand-secondary active:bg-opacity-80 active:text-blue-gray-900"
+                className="flex w-full cursor-pointer select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start leading-tight outline-none transition-all dark:text-white hover:bg-brand-secondary hover:text-job-primary dark:hover:text-job-primary focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-brand-secondary active:bg-opacity-80 active:text-blue-gray-900"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -230,7 +252,7 @@ const Navbar = () => {
               <button
                 tabIndex="-1"
                 role="menuitem"
-                className="flex w-full cursor-pointer select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start leading-tight outline-none transition-all dark:text-white hover:bg-brand-secondary hover:text-job-primary focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-brand-secondary active:bg-opacity-80 active:text-blue-gray-900"
+                className="flex w-full cursor-pointer select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start leading-tight outline-none transition-all dark:text-white hover:bg-brand-secondary hover:text-job-primary dark:hover:text-job-primary focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-brand-secondary active:bg-opacity-80 active:text-blue-gray-900"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -260,7 +282,7 @@ const Navbar = () => {
                 //   onClick={handleLogoutBtn}
                 tabIndex="-1"
                 role="menuitem"
-                className="flex w-full cursor-pointer select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start leading-tight outline-none transition-all dark:text-white hover:bg-brand-secondary hover:text-job-primary focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-brand-secondary active:bg-opacity-80 active:text-blue-gray-900"
+                className="flex w-full cursor-pointer select-none items-center gap-2 rounded-md px-3 pt-[9px] pb-2 text-start leading-tight outline-none transition-all dark:text-white hover:bg-brand-secondary hover:text-job-primary dark:hover:text-job-primary focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-brand-secondary active:bg-opacity-80 active:text-blue-gray-900"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
