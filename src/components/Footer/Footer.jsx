@@ -5,7 +5,7 @@ import useAuth from "../../hooks/useAuth";
 const Footer = () => {
   const { theme } = useAuth();
   return (
-    <footer className="bg-job-secondary  dark:bg-job-dark-primary">
+    <footer className="bg-job-secondary  dark:bg-gray-900">
       <div className="mx-auto container pb-6 pt-16 px-6 lg:px-8 lg:pt-24">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div>
@@ -17,7 +17,7 @@ const Footer = () => {
               />
             </div>
 
-            <p className="mt-6 lg:max-w-md text-center leading-relaxed text-gray-500  lg:text-left">
+            <p className="mt-6 lg:max-w-md text-center leading-relaxed text-gray-500 dark:text-white  lg:text-left">
               Welcome to Dream Jobs, your premier destination for finding your
               ideal career. We&apos;re dedicated to helping you turn your
               aspirations into reality.
@@ -29,7 +29,7 @@ const Footer = () => {
                   href="https://www.facebook.com/ShiponIrfan"
                   rel="noreferrer"
                   target="_blank"
-                  className="text-teal-700 transition hover:text-teal-700/75"
+                  className="text-teal-700 dark:text-white transition hover:text-teal-700"
                 >
                   <span className="sr-only">Facebook</span>
                   <svg
@@ -52,7 +52,7 @@ const Footer = () => {
                   href="https://www.instagram.com/shiponirfan"
                   rel="noreferrer"
                   target="_blank"
-                  className="text-teal-700 transition hover:text-teal-700/75"
+                  className="text-teal-700 dark:text-white transition hover:text-teal-700"
                 >
                   <span className="sr-only">Instagram</span>
                   <svg
@@ -75,7 +75,7 @@ const Footer = () => {
                   href="https://twitter.com/ShiponIrfan"
                   rel="noreferrer"
                   target="_blank"
-                  className="text-teal-700 transition hover:text-teal-700/75"
+                  className="text-teal-700 dark:text-white transition hover:text-teal-700"
                 >
                   <span className="sr-only">Twitter</span>
                   <svg
@@ -94,7 +94,7 @@ const Footer = () => {
                   href="https://github.com/shiponirfan"
                   rel="noreferrer"
                   target="_blank"
-                  className="text-teal-700 transition hover:text-teal-700/75"
+                  className="text-teal-700 dark:text-white transition hover:text-teal-700"
                 >
                   <span className="sr-only">GitHub</span>
                   <svg
@@ -116,12 +116,14 @@ const Footer = () => {
 
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4 lg:col-span-2">
             <div className="text-center sm:text-left">
-              <p className="text-lg font-medium text-gray-900">About Us</p>
+              <p className="text-lg font-medium text-gray-900 dark:text-white">
+                About Us
+              </p>
 
               <ul className="mt-8 space-y-4 text-sm">
                 <li>
                   <Link
-                    className="text-gray-700 transition hover:text-gray-700/75"
+                    className="text-gray-700  transition hover:text-gray-700 dark:text-white"
                     to="/"
                   >
                     Home
@@ -130,7 +132,7 @@ const Footer = () => {
 
                 <li>
                   <Link
-                    className="text-gray-700 transition hover:text-gray-700/75"
+                    className="text-gray-700  transition hover:text-gray-700 dark:text-white"
                     to="/all-jobs"
                   >
                     All Jobs
@@ -139,7 +141,7 @@ const Footer = () => {
 
                 <li>
                   <Link
-                    className="text-gray-700 transition hover:text-gray-700/75"
+                    className="text-gray-700  transition hover:text-gray-700 dark:text-white"
                     to="/blogs"
                   >
                     Blogs
@@ -148,7 +150,7 @@ const Footer = () => {
 
                 <li>
                   <Link
-                    className="text-gray-700 transition hover:text-gray-700/75"
+                    className="text-gray-700  transition hover:text-gray-700 dark:text-white"
                     href="/"
                   >
                     Careers
@@ -158,29 +160,31 @@ const Footer = () => {
             </div>
 
             <div className="text-center sm:text-left">
-              <p className="text-lg font-medium text-gray-900">Categories</p>
+              <p className="text-lg font-medium text-gray-900 dark:text-white">
+                Categories
+              </p>
 
               <ul className="mt-8 space-y-4 text-sm">
                 <li>
-                  <span className="text-gray-700 transition hover:text-gray-700/75">
+                  <span className="text-gray-700  transition hover:text-gray-700 dark:text-white">
                     On Site Job
                   </span>
                 </li>
 
                 <li>
-                  <span className="text-gray-700 transition hover:text-gray-700/75">
+                  <span className="text-gray-700  transition hover:text-gray-700 dark:text-white">
                     Remote Job
                   </span>
                 </li>
 
                 <li>
-                  <span className="text-gray-700 transition hover:text-gray-700/75">
+                  <span className="text-gray-700  transition hover:text-gray-700 dark:text-white">
                     Hybrid
                   </span>
                 </li>
 
                 <li>
-                  <span className="text-gray-700 transition hover:text-gray-700/75">
+                  <span className="text-gray-700  transition hover:text-gray-700 dark:text-white">
                     Part Time
                   </span>
                 </li>
@@ -188,24 +192,26 @@ const Footer = () => {
             </div>
 
             <div className="text-center sm:text-left">
-              <p className="text-lg font-medium text-gray-900">Helpful Links</p>
+              <p className="text-lg font-medium text-gray-900 dark:text-white">
+                Helpful Links
+              </p>
 
               <ul className="mt-8 space-y-4 text-sm">
                 <li>
-                  <span className="text-gray-700 transition hover:text-gray-700/75">
+                  <span className="text-gray-700  transition hover:text-gray-700 dark:text-white">
                     FAQs
                   </span>
                 </li>
 
                 <li>
-                  <span className="text-gray-700 transition hover:text-gray-700/75">
+                  <span className="text-gray-700  transition hover:text-gray-700 dark:text-white">
                     Support
                   </span>
                 </li>
 
                 <li>
                   <span className="group flex gap-1.5 justify-center md:justify-normal  ">
-                    <span className="text-gray-700 transition group-hover:text-gray-700/75">
+                    <span className="text-gray-700  transition  dark:text-white">
                       Live Chat
                     </span>
 
@@ -219,14 +225,16 @@ const Footer = () => {
             </div>
 
             <div className="text-center sm:text-left">
-              <p className="text-lg font-medium text-gray-900">Contact Us</p>
+              <p className="text-lg font-medium text-gray-900 dark:text-white">
+                Contact Us
+              </p>
 
               <ul className="mt-8 space-y-4 text-sm">
                 <li>
                   <span className="flex items-center justify-center md:justify-normal  gap-1.5  ">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5 shrink-0 text-gray-900"
+                      className="h-5 w-5 shrink-0 text-gray-900 dark:text-white"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -239,7 +247,7 @@ const Footer = () => {
                       />
                     </svg>
 
-                    <span className="md:flex-1 text-gray-700">
+                    <span className="md:flex-1 text-gray-700 dark:text-white">
                       info@gmail.com
                     </span>
                   </span>
@@ -249,7 +257,7 @@ const Footer = () => {
                   <span className="flex items-center justify-center md:justify-normal gap-1.5  ">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5 shrink-0 text-gray-900"
+                      className="h-5 w-5 shrink-0 text-gray-900 dark:text-white"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -262,14 +270,16 @@ const Footer = () => {
                       />
                     </svg>
 
-                    <span className="md:flex-1 text-gray-700">01710467100</span>
+                    <span className="md:flex-1 text-gray-700 dark:text-white">
+                      01710467100
+                    </span>
                   </span>
                 </li>
 
                 <li className="flex items-start justify-center md:justify-normal gap-1.5  ">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5 shrink-0 text-gray-900"
+                    className="h-5 w-5 shrink-0 text-gray-900 dark:text-white"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -287,7 +297,7 @@ const Footer = () => {
                     />
                   </svg>
 
-                  <address className="-mt-0.5 md:flex-1 not-italic justify-center md:justify-normal text-gray-700">
+                  <address className="-mt-0.5 md:flex-1 not-italic justify-center md:justify-normal text-gray-700 dark:text-white">
                     Rangpur, Bangladesh
                   </address>
                 </li>
@@ -298,21 +308,21 @@ const Footer = () => {
 
         <div className="mt-12 border-t border-gray-100 pt-6">
           <div className="text-center sm:flex sm:justify-between sm:text-left">
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-gray-500 dark:text-white">
               <span className="block sm:inline">All rights reserved.</span>
 
-              <span className="inline-block text-teal-600 underline transition hover:text-teal-600/75">
+              <span className="inline-block text-teal-600 underline transition hover:text-teal-600">
                 Terms & Conditions
               </span>
 
               <span>&middot;</span>
 
-              <span className="inline-block text-teal-600 underline transition hover:text-teal-600/75">
+              <span className="inline-block text-teal-600 underline transition hover:text-teal-600">
                 Privacy Policy
               </span>
             </p>
 
-            <p className="mt-4 text-sm text-gray-500 sm:order-first sm:mt-0">
+            <p className="mt-4 text-sm text-gray-500 dark:text-white sm:order-first sm:mt-0">
               &copy; 2023 Dream Jobs
             </p>
           </div>
