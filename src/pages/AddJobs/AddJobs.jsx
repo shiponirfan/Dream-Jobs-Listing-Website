@@ -17,7 +17,6 @@ const AddJobs = () => {
       <span>{"Add Job"}</span>
     </li>
   );
-  console.log(user);
   //   Add Job post
   const handleAddJob = (e) => {
     e.preventDefault();
