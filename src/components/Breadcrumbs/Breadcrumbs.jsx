@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 const Breadcrumbs = ({ image, name, breadCrumbs }) => {
   return (
-    <div className="relative">
+    <div className="relative -z-10">
       <img
         className="w-full object-cover h-44 md:h-64"
         src={image}

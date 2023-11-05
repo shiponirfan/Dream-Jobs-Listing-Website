@@ -184,7 +184,7 @@ const Navbar = () => {
                 </div>
                 <ul
                   tabIndex={0}
-                  className="mt-3 p-2 z-20 shadow  dark:border-2 menu menu-sm dropdown-content bg-base-100 dark:bg-gray-900 rounded-box w-52"
+                  className="mt-3 p-2 z-50 shadow  dark:border-2 menu menu-sm dropdown-content bg-base-100 dark:bg-gray-900 rounded-box w-52"
                 >
                   <div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
                     <div className="font-medium ">

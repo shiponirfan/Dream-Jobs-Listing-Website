@@ -49,7 +49,7 @@ const HomeBanner = () => {
         <div className="md:w-1/2">
           <div className="w-full px-4">
             <div className="lg:ml-auto lg:text-right">
-              <div className="relative z-10 inline-block pt-11 lg:pt-0">
+              <div className="relative -z-10 inline-block pt-11 lg:pt-0">
                 <img
                   src="https://i.ibb.co/2jzfyXz/hero-image-01.png"
                   alt="hero"

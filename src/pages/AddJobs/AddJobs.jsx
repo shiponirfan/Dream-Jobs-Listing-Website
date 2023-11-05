@@ -5,8 +5,11 @@ import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import jobImg from "../../assets/images/job1.jpg";
 import resumeSvg from "../../assets/icons/Job-hunt-cuate.svg";
 import useAuth from "../../hooks/useAuth";
+import useAxios from "../../hooks/useAxios";
+import toast from "react-hot-toast";
 const AddJobs = () => {
   const { user } = useAuth();
+  const axios = useAxios();
   const [jobPostingDate, setJobPostingDate] = useState(new Date());
   const [applicationDeadline, setApplicationDeadline] = useState(new Date());
   const breadCrumbs = (
@@ -14,7 +17,7 @@ const AddJobs = () => {
       <span>{"Add Job"}</span>
     </li>
   );
-
+  console.log(user);
   //   Add Job post
   const handleAddJob = (e) => {
     e.preventDefault();
@@ -31,6 +34,7 @@ const AddJobs = () => {
       jobTitle,
       jobCategory,
       userName,
+      userEmail: user.email,
       pictureUrl,
       salaryRange,
       jobPostingDate,
@@ -38,7 +42,13 @@ const AddJobs = () => {
       jobApplicantsNumber,
       jobDescription,
     };
-    console.log(jobPost);
+
+    axios.post("/jobs", jobPost).then((res) => {
+      if (res.data.acknowledged) {
+        toast.success("Job Posted Successfully");
+        form.reset();
+      }
+    });
   };
 
   return (

@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { Navigate, useLocation } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
 
 const PrivateRoutes = ({ children }) => {
   const { user, loading } = useAuth();
@@ -8,11 +9,7 @@ const PrivateRoutes = ({ children }) => {
 
   // Check Loading
   if (loading) {
-    return (
-      <div className=" w-full bg-white dark:bg-gray-900 z-50  flex justify-center items-center">
-        <span className="loading loading-ring w-20 text-job-primary dark:text-white"></span>
-      </div>
-    );
+    return <LoadingSpinner/>
   }
 
   // Check User
