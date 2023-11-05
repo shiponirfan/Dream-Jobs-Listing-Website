@@ -44,30 +44,36 @@ const Navbar = () => {
           All Jobs
         </NavLink>
       </li>
-      <li className="hover:text-job-primary dark:hover:text-job-primary duration-300">
-        <NavLink
-          className={({ isActive }) => (isActive ? "text-job-primary" : "")}
-          to="/applied-jobs"
-        >
-          Applied Jobs
-        </NavLink>
-      </li>
-      <li className="hover:text-job-primary dark:hover:text-job-primary duration-300">
-        <NavLink
-          className={({ isActive }) => (isActive ? "text-job-primary" : "")}
-          to="/add-job"
-        >
-          Add A Job
-        </NavLink>
-      </li>
-      <li className="hover:text-job-primary dark:hover:text-job-primary duration-300">
-        <NavLink
-          className={({ isActive }) => (isActive ? "text-job-primary" : "")}
-          to="/my-jobs"
-        >
-          My Jobs
-        </NavLink>
-      </li>
+      {user?.email ? (
+        <>
+          <li className="hover:text-job-primary dark:hover:text-job-primary duration-300">
+            <NavLink
+              className={({ isActive }) => (isActive ? "text-job-primary" : "")}
+              to="/applied-jobs"
+            >
+              Applied Jobs
+            </NavLink>
+          </li>
+          <li className="hover:text-job-primary dark:hover:text-job-primary duration-300">
+            <NavLink
+              className={({ isActive }) => (isActive ? "text-job-primary" : "")}
+              to="/add-job"
+            >
+              Add A Job
+            </NavLink>
+          </li>
+          <li className="hover:text-job-primary dark:hover:text-job-primary duration-300">
+            <NavLink
+              className={({ isActive }) => (isActive ? "text-job-primary" : "")}
+              to="/my-jobs"
+            >
+              My Jobs
+            </NavLink>
+          </li>
+        </>
+      ) : (
+        ""
+      )}
       <li className="hover:text-job-primary dark:hover:text-job-primary duration-300">
         <NavLink
           className={({ isActive }) => (isActive ? "text-job-primary" : "")}
@@ -239,7 +245,7 @@ const Navbar = () => {
                       ></path>
                     </svg>
                     <p className="block font-sans text-sm font-normal leading-normal text-inherit antialiased">
-                      Edit Profile
+                      <Link to="/my-jobs">My Jobs</Link>
                     </p>
                   </button>
                   <button
@@ -263,7 +269,7 @@ const Navbar = () => {
                       ></path>
                     </svg>
                     <p className="block font-sans text-sm font-normal leading-normal text-inherit antialiased">
-                      Inbox
+                      <Link to="/add-job">Add A Jobs</Link>
                     </p>
                   </button>
                   <button
@@ -287,7 +293,7 @@ const Navbar = () => {
                       ></path>
                     </svg>
                     <p className="block font-sans text-sm font-normal leading-normal text-inherit antialiased">
-                      Help
+                      <Link to="/applied-jobs">Applied Jobs</Link>
                     </p>
                   </button>
                   <hr
