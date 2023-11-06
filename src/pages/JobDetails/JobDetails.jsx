@@ -1,11 +1,18 @@
 import { useLoaderData } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import logo from "../../assets/logo/dreamjoblogo.png";
+import logoDark from "../../assets/logo/dreamjoblogofordark.png";
 import { FiSend } from "react-icons/fi";
 import { RiCalendarEventLine, RiMoneyDollarCircleLine } from "react-icons/ri";
 import Swal from "sweetalert2";
+import { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
+import useAxios from "../../hooks/useAxios";
+import toast from "react-hot-toast";
 const JobDetails = () => {
   const jobDetails = useLoaderData();
-  const { user } = useAuth();
+  const axios = useAxios();
+  const { user, theme } = useAuth();
   const {
     _id,
     jobTitle,
@@ -16,6 +23,7 @@ const JobDetails = () => {
     salaryRange,
     jobPostingDate,
     jobDescription,
+    userEmail,
   } = jobDetails;
 
   const handleSendMessage = (e) => {
@@ -26,6 +34,65 @@ const JobDetails = () => {
       icon: "success",
       confirmButtonColor: "#00BF63",
     });
+  };
+
+  const handleApplyModal = () => {
+    if (userEmail === user?.email) {
+      return toast.error("You Are The Owner Of This Job Post");
+    }
+
+    const deadlineDate = new Date(applicationDeadline);
+    const currentDate = new Date();
+    console.log(deadlineDate);
+    console.log(currentDate);
+    if (deadlineDate < currentDate) {
+      return Swal.fire({
+        title: "Submitting Deadline is Over",
+        text: "Check Others Job For Submit Resume",
+        icon: "warning",
+        confirmButtonColor: "#00BF63",
+      });
+    }
+    document.getElementById("my_modal_3").showModal();
+  };
+
+  const [appliedJobData, setAppliedJobData] = useState("");
+  const [appliedJobLoader, setAppliedJobLoader] = useState("");
+
+  const { mutate } = useMutation({
+    mutationKey: ["jobsByEmail"],
+    mutationFn: async () => {
+      return await axios.post("/user/applied-job", appliedJobData);
+    },
+    onSuccess: () => {
+      Swal.fire({
+        title: "Resume Submitted Successfully",
+        icon: "success",
+        confirmButtonColor: "#00BF63",
+      });
+      document.getElementById("my_modal_3").close();
+      appliedJobLoader.reset();
+    },
+  });
+
+  const handleJobApply = (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    const applyUserName = form.applyUserName.value;
+    const applyUserEmail = form.applyUserEmail.value;
+    const applyResumeLink = form.applyResumeLink.value;
+
+    const applyUserResume = {
+      applyUserName,
+      applyUserEmail,
+      applyResumeLink,
+      jobInformationId: _id,
+    };
+
+    setAppliedJobData(applyUserResume);
+    setAppliedJobLoader(form);
+    mutate();
   };
 
   return (
@@ -104,7 +171,10 @@ const JobDetails = () => {
                 </div>
 
                 <div className="w-full lg:w-auto">
-                  <button className="bg-job-primary w-full lg:w-auto dark:hover:bg-white dark:hover:text-black hover:bg-black hover:scale-105 duration-300 text-white font-medium  text-lg  py-4 2xl:px-10 xl:px-6 lg:px-8 px-3 rounded-md flex justify-center items-center">
+                  <button
+                    onClick={handleApplyModal}
+                    className="bg-job-primary w-full lg:w-auto dark:hover:bg-white dark:hover:text-black hover:bg-black hover:scale-105 duration-300 text-white font-medium  text-lg  py-4 2xl:px-10 xl:px-6 lg:px-8 px-3 rounded-md flex justify-center items-center"
+                  >
                     <FiSend className="mr-2" /> Apply Now
                   </button>
                 </div>
@@ -236,74 +306,74 @@ const JobDetails = () => {
 
           <div className="lg:w-1/3">
             <div className="mb-8  dark:text-white dark:hover:border-job-primary hover:border-brand-primary duration-300 rounded-lg border border-gray-100 py-4 shadow-sm">
-              <dl className="-my-3 divide-y  divide-gray-100 dark:divide-brand-primary text-base font-medium">
-                <div className=" p-3 even:bg-gray-50 dark:even:bg-brand-primary ">
+              <dl className="-my-3 divide-y  divide-gray-100 dark:divide-gray-900 text-base font-medium">
+                <div className=" p-3 even:bg-gray-50 dark:even:bg-gray-900 ">
                   <dt className="font-bold text-center">Job Information</dt>
                 </div>
 
-                <div className="grid grid-cols-1 items-center   gap-1 p-3 even:bg-gray-50 dark:even:bg-brand-primary sm:grid-cols-3 sm:gap-4">
+                <div className="grid grid-cols-1 items-center   gap-1 p-3 even:bg-gray-50 dark:even:bg-gray-900 sm:grid-cols-3 sm:gap-4">
                   <dt className="font-bold ">Date Posted</dt>
                   <dd className="text-gray-700 dark:text-white sm:col-span-2">
                     {jobPostingDate.slice(0, 10)}
                   </dd>
                 </div>
-                <div className="grid grid-cols-1 items-center  gap-1 p-3 even:bg-gray-50 dark:even:bg-brand-primary sm:grid-cols-3 sm:gap-4">
+                <div className="grid grid-cols-1 items-center  gap-1 p-3 even:bg-gray-50 dark:even:bg-gray-900 sm:grid-cols-3 sm:gap-4">
                   <dt className="font-bold ">Expiration date</dt>
                   <dd className="text-gray-700 dark:text-white sm:col-span-2">
                     {applicationDeadline.slice(0, 10)}
                   </dd>
                 </div>
-                <div className="grid grid-cols-1 items-center  gap-1 p-3 even:bg-gray-50 dark:even:bg-brand-primary sm:grid-cols-3 sm:gap-4">
+                <div className="grid grid-cols-1 items-center  gap-1 p-3 even:bg-gray-50 dark:even:bg-gray-900 sm:grid-cols-3 sm:gap-4">
                   <dt className="font-bold ">Offered Salary</dt>
                   <dd className="text-gray-700 dark:text-white sm:col-span-2">
                     {salaryRange}
                   </dd>
                 </div>
-                <div className="grid grid-cols-1 items-center  gap-1 p-3 even:bg-gray-50 dark:even:bg-brand-primary sm:grid-cols-3 sm:gap-4">
+                <div className="grid grid-cols-1 items-center  gap-1 p-3 even:bg-gray-50 dark:even:bg-gray-900 sm:grid-cols-3 sm:gap-4">
                   <dt className="font-bold ">Job Types</dt>
                   <dd className="text-gray-700 dark:text-white sm:col-span-2">
                     {jobCategory.split("-").join(" ").toUpperCase()}
                   </dd>
                 </div>
-                <div className="grid grid-cols-1 items-center  gap-1 p-3 even:bg-gray-50 dark:even:bg-brand-primary sm:grid-cols-3 sm:gap-4">
+                <div className="grid grid-cols-1 items-center  gap-1 p-3 even:bg-gray-50 dark:even:bg-gray-900 sm:grid-cols-3 sm:gap-4">
                   <dt className="font-bold ">Location</dt>
                   <dd className="text-gray-700 dark:text-white sm:col-span-2">
                     Bangladesh
                   </dd>
                 </div>
 
-                <div className="grid grid-cols-1 items-center  gap-1 p-3 even:bg-gray-50 dark:even:bg-brand-primary sm:grid-cols-3 sm:gap-4">
+                <div className="grid grid-cols-1 items-center  gap-1 p-3 even:bg-gray-50 dark:even:bg-gray-900 sm:grid-cols-3 sm:gap-4">
                   <dt className="font-bold ">Category</dt>
                   <dd className="text-gray-700 dark:text-white sm:col-span-2">
                     IT & Networking
                   </dd>
                 </div>
 
-                <div className="grid grid-cols-1 items-center  gap-1 p-3 even:bg-gray-50 dark:even:bg-brand-primary  sm:grid-cols-3 sm:gap-4">
+                <div className="grid grid-cols-1 items-center  gap-1 p-3 even:bg-gray-50 dark:even:bg-gray-900  sm:grid-cols-3 sm:gap-4">
                   <dt className="font-bold ">Experience</dt>
                   <dd className="text-gray-700 dark:text-white sm:col-span-2">
                     2 Year
                   </dd>
                 </div>
-                <div className="grid grid-cols-1 items-center  gap-1 p-3 even:bg-gray-50 dark:even:bg-brand-primary sm:grid-cols-3 sm:gap-4">
+                <div className="grid grid-cols-1 items-center  gap-1 p-3 even:bg-gray-50 dark:even:bg-gray-900 sm:grid-cols-3 sm:gap-4">
                   <dt className="font-bold ">Gender</dt>
                   <dd className="text-gray-700 dark:text-white sm:col-span-2">
                     Both
                   </dd>
                 </div>
-                <div className="grid grid-cols-1 items-center  gap-1 p-3 even:bg-gray-50 dark:even:bg-brand-primary sm:grid-cols-3 sm:gap-4">
+                <div className="grid grid-cols-1 items-center  gap-1 p-3 even:bg-gray-50 dark:even:bg-gray-900 sm:grid-cols-3 sm:gap-4">
                   <dt className="font-bold ">Industry</dt>
                   <dd className="text-gray-700 dark:text-white sm:col-span-2">
                     Development
                   </dd>
                 </div>
-                <div className="grid grid-cols-1 items-center  gap-1 p-3 even:bg-gray-50 dark:even:bg-brand-primary sm:grid-cols-3 sm:gap-4">
+                <div className="grid grid-cols-1 items-center  gap-1 p-3 even:bg-gray-50 dark:even:bg-gray-900 sm:grid-cols-3 sm:gap-4">
                   <dt className="font-bold ">Qualification</dt>
                   <dd className="text-gray-700 ml-2 xl:ml-0 dark:text-white sm:col-span-2">
                     Bachelor Degree
                   </dd>
                 </div>
-                <div className="grid grid-cols-1 items-center  gap-1 p-3 even:bg-gray-50 dark:even:bg-brand-primary sm:grid-cols-3 sm:gap-4">
+                <div className="grid grid-cols-1 items-center  gap-1 p-3 even:bg-gray-50 dark:even:bg-gray-900 sm:grid-cols-3 sm:gap-4">
                   <dt className="font-bold ">Career Level</dt>
                   <dd className="text-gray-700 dark:text-white sm:col-span-2">
                     Manager
@@ -311,7 +381,7 @@ const JobDetails = () => {
                 </div>
               </dl>
             </div>
-            <div className="bg-gray-100 xl:p-10 p-5 rounded-xl">
+            <div className="bg-gray-100 dark:bg-gray-900 xl:p-10 p-5 rounded-xl">
               <h2 className="font-bold text-xl">Send Message Us</h2>
               <form onSubmit={handleSendMessage}>
                 <div className="mt-4">
@@ -361,6 +431,94 @@ const JobDetails = () => {
             </div>
           </div>
         </div>
+
+        <dialog id="my_modal_3" className="modal">
+          <div className="modal-box dark:bg-gray-800">
+            <div className="md:w-64 w-56 mx-auto mb-3">
+              <img
+                className="w-full"
+                src={theme === "light" ? logo : logoDark}
+                alt="Dream Jobs Logo"
+              />
+            </div>
+            <h3 className="font-bold text-xl text-center">
+              Submit Resume Link
+            </h3>
+            <div>
+              <form method="dialog">
+                <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                  ✕
+                </button>
+              </form>
+              <form onSubmit={handleJobApply}>
+                <div className="mt-4">
+                  <div className="flex justify-between">
+                    <label
+                      className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
+                      htmlFor="applyUserName"
+                    >
+                      User Name
+                    </label>
+                  </div>
+
+                  <input
+                    required
+                    defaultValue={user?.displayName}
+                    id="applyUserName"
+                    className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300"
+                    type="text"
+                    name="applyUserName"
+                  />
+                </div>
+                <div className="mt-4">
+                  <label
+                    className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
+                    htmlFor="applyUserEmail"
+                  >
+                    Email Address
+                  </label>
+                  <input
+                    readOnly
+                    defaultValue={user?.email}
+                    required
+                    id="applyUserEmail"
+                    className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300"
+                    type="email"
+                    name="applyUserEmail"
+                  />
+                </div>
+                <div className="mt-4">
+                  <div className="flex justify-between">
+                    <label
+                      className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
+                      htmlFor="applyResumeLink"
+                    >
+                      Resume Link
+                    </label>
+                  </div>
+
+                  <input
+                    required
+                    id="applyResumeLink"
+                    placeholder="Submit Your Resume Link Here"
+                    className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300"
+                    type="text"
+                    name="applyResumeLink"
+                  />
+                </div>
+
+                <div className="mt-6">
+                  <button
+                    type="submit"
+                    className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-gray-700 dark:bg-job-primary dark:hover:bg-green-600 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50"
+                  >
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </dialog>
       </div>
     </div>
   );
