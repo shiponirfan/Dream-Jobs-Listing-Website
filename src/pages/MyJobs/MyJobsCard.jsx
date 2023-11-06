@@ -11,16 +11,12 @@ const MyJobsCard = ({ job }) => {
     _id,
     jobTitle,
     jobCategory,
-    userName,
     jobApplicantsNumber,
-    userEmail,
     pictureUrl,
     applicationDeadline,
     salaryRange,
     jobPostingDate,
-    jobDescription,
   } = job;
-
   const { mutate } = useMutation({
     mutationKey: ["jobsByEmail"],
     mutationFn: async (id) => {
@@ -36,7 +32,6 @@ const MyJobsCard = ({ job }) => {
       queryClient.invalidateQueries({ queryKey: ["jobsByEmail"] });
     },
   });
-
   const handleDeleteJob = () => {
     Swal.fire({
       title: "Are you sure?",
@@ -52,7 +47,6 @@ const MyJobsCard = ({ job }) => {
       }
     });
   };
-
   return (
     <div>
       <div className="flex flex-col dark:bg-gray-800 dark:text-white lg:flex-row gap-4 lg:gap-8 p-6 mb-4 lg:items-center rounded-lg shadow-lg dark:shadow-gray-950 border border-transparent dark:border dark:border-job-primary hover:shadow-job-primary/50 duration-300 text-base xl:text-lg">
@@ -100,14 +94,12 @@ const MyJobsCard = ({ job }) => {
         </div>
         <div className="justify-end">
           <div className="space-y-5 flex flex-col">
+            <Link to={`/update/${_id}`}>
+              <button className="bg-job-primary flex-1 dark:hover:bg-white dark:hover:text-black hover:bg-black hover:scale-105 duration-300 text-white font-medium  text-lg  py-3 xl:px-6 px-3 rounded-md flex justify-center items-center">
+                <BsClipboardCheckFill className="mr-2" /> Update
+              </button>
+            </Link>
             <button
-              // onClick={handleJobUpdate}
-              className="bg-job-primary flex-1 dark:hover:bg-white dark:hover:text-black hover:bg-black hover:scale-105 duration-300 text-white font-medium  text-lg  py-3 xl:px-6 px-3 rounded-md flex justify-center items-center"
-            >
-              <BsClipboardCheckFill className="mr-2" /> Update
-            </button>
-            <button
-              //   onClick={()=> mutate(_id)}
               onClick={handleDeleteJob}
               className="bg-red-500 flex-1 dark:hover:bg-white dark:hover:text-black hover:bg-black hover:scale-105 duration-300 text-white font-medium  text-lg  py-3 xl:px-6 px-3 rounded-md flex justify-center items-center"
             >

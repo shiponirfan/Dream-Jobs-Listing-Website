@@ -10,6 +10,8 @@ import AddJobs from "../pages/AddJobs/AddJobs";
 import MyJobs from "../pages/MyJobs/MyJobs";
 import AllJobs from "../pages/AllJobs/AllJobs";
 import Blogs from "../pages/Blogs/Blogs";
+import UpdateJob from "../pages/UpdateJob/UpdateJob";
+import JobDetails from "../pages/JobDetails/JobDetails";
 
 const Routes = createBrowserRouter([
   {
@@ -60,6 +62,24 @@ const Routes = createBrowserRouter([
             <MyJobs />
           </PrivateRoutes>
         ),
+      },
+      {
+        path: "job/:id",
+        element: (
+          <PrivateRoutes>
+            <JobDetails />
+          </PrivateRoutes>
+        ),
+        loader: ({params}) => fetch(`http://localhost:5000/api/v1/job/${params.id}`),
+      },
+      {
+        path: "update/:id",
+        element: (
+          <PrivateRoutes>
+            <UpdateJob />
+          </PrivateRoutes>
+        ),
+        loader: ({params}) => fetch(`http://localhost:5000/api/v1/job/${params.id}`),
       },
     ],
   },

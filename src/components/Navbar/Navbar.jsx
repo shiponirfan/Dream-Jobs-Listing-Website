@@ -167,7 +167,7 @@ const Navbar = () => {
               >
                 <PiSignOutBold /> Sign Out
               </button>
-              <div className="dropdown dropdown-end">
+              <div className="dropdown dropdown-end ">
                 <div
                   tabIndex={0}
                   className="cursor-pointer flex justify-center items-center gap-3"

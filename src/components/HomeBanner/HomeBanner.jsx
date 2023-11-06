@@ -32,11 +32,13 @@ const HomeBanner = () => {
               <option value="hybrid">Hybrid</option>
               <option value="part-time">Part Time</option>
             </select>
-            <div className="indicator ">
+
+            <div>
               <button className="btn join-item bg-job-primary hover:bg-green-600 text-white dark:border-job-primary">
                 Search
               </button>
             </div>
+
           </div>
 
           <p className="text-gray-600 dark:text-gray-400">
@@ -46,175 +48,177 @@ const HomeBanner = () => {
             Web Designer, Graphics Designer, App Developer
           </p>
         </div>
-        <div className="md:w-1/2">
-          <div className="w-full px-4">
+        <div className="md:w-1/2 ">
+          <div className="w-full px-4 ">
             <div className="lg:ml-auto lg:text-right">
-              <div className="relative -z-10 inline-block pt-11 lg:pt-0">
+              <div className=" inline-block pt-11 lg:pt-0">
                 <img
                   src="https://i.ibb.co/2jzfyXz/hero-image-01.png"
-                  alt="hero"
-                  className="max-w-full lg:ml-auto"
+                  alt="hero "
+                  className="max-w-full lg:ml-auto "
                 />
-                <span className="absolute -bottom-8 -left-8 z-[-1]">
-                  <svg
-                    width="93"
-                    height="93"
-                    viewBox="0 0 93 93"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <circle
-                      cx="2.5"
-                      cy="2.5"
-                      r="2.5"
-                      fill={theme === "light" ? "#00BF63" : "white"}
-                    />
-                    <circle
-                      cx="2.5"
-                      cy="24.5"
-                      r="2.5"
-                      fill={theme === "light" ? "#00BF63" : "white"}
-                    />
-                    <circle
-                      cx="2.5"
-                      cy="46.5"
-                      r="2.5"
-                      fill={theme === "light" ? "#00BF63" : "white"}
-                    />
-                    <circle
-                      cx="2.5"
-                      cy="68.5"
-                      r="2.5"
-                      fill={theme === "light" ? "#00BF63" : "white"}
-                    />
-                    <circle
-                      cx="2.5"
-                      cy="90.5"
-                      r="2.5"
-                      fill={theme === "light" ? "#00BF63" : "white"}
-                    />
-                    <circle
-                      cx="24.5"
-                      cy="2.5"
-                      r="2.5"
-                      fill={theme === "light" ? "#00BF63" : "white"}
-                    />
-                    <circle
-                      cx="24.5"
-                      cy="24.5"
-                      r="2.5"
-                      fill={theme === "light" ? "#00BF63" : "white"}
-                    />
-                    <circle
-                      cx="24.5"
-                      cy="46.5"
-                      r="2.5"
-                      fill={theme === "light" ? "#00BF63" : "white"}
-                    />
-                    <circle
-                      cx="24.5"
-                      cy="68.5"
-                      r="2.5"
-                      fill={theme === "light" ? "#00BF63" : "white"}
-                    />
-                    <circle
-                      cx="24.5"
-                      cy="90.5"
-                      r="2.5"
-                      fill={theme === "light" ? "#00BF63" : "white"}
-                    />
-                    <circle
-                      cx="46.5"
-                      cy="2.5"
-                      r="2.5"
-                      fill={theme === "light" ? "#00BF63" : "white"}
-                    />
-                    <circle
-                      cx="46.5"
-                      cy="24.5"
-                      r="2.5"
-                      fill={theme === "light" ? "#00BF63" : "white"}
-                    />
-                    <circle
-                      cx="46.5"
-                      cy="46.5"
-                      r="2.5"
-                      fill={theme === "light" ? "#00BF63" : "white"}
-                    />
-                    <circle
-                      cx="46.5"
-                      cy="68.5"
-                      r="2.5"
-                      fill={theme === "light" ? "#00BF63" : "white"}
-                    />
-                    <circle
-                      cx="46.5"
-                      cy="90.5"
-                      r="2.5"
-                      fill={theme === "light" ? "#00BF63" : "white"}
-                    />
-                    <circle
-                      cx="68.5"
-                      cy="2.5"
-                      r="2.5"
-                      fill={theme === "light" ? "#00BF63" : "white"}
-                    />
-                    <circle
-                      cx="68.5"
-                      cy="24.5"
-                      r="2.5"
-                      fill={theme === "light" ? "#00BF63" : "white"}
-                    />
-                    <circle
-                      cx="68.5"
-                      cy="46.5"
-                      r="2.5"
-                      fill={theme === "light" ? "#00BF63" : "white"}
-                    />
-                    <circle
-                      cx="68.5"
-                      cy="68.5"
-                      r="2.5"
-                      fill={theme === "light" ? "#00BF63" : "white"}
-                    />
-                    <circle
-                      cx="68.5"
-                      cy="90.5"
-                      r="2.5"
-                      fill={theme === "light" ? "#00BF63" : "white"}
-                    />
-                    <circle
-                      cx="90.5"
-                      cy="2.5"
-                      r="2.5"
-                      fill={theme === "light" ? "#00BF63" : "white"}
-                    />
-                    <circle
-                      cx="90.5"
-                      cy="24.5"
-                      r="2.5"
-                      fill={theme === "light" ? "#00BF63" : "white"}
-                    />
-                    <circle
-                      cx="90.5"
-                      cy="46.5"
-                      r="2.5"
-                      fill={theme === "light" ? "#00BF63" : "white"}
-                    />
-                    <circle
-                      cx="90.5"
-                      cy="68.5"
-                      r="2.5"
-                      fill={theme === "light" ? "#00BF63" : "white"}
-                    />
-                    <circle
-                      cx="90.5"
-                      cy="90.5"
-                      r="2.5"
-                      fill={theme === "light" ? "#00BF63" : "white"}
-                    />
-                  </svg>
-                </span>
+                <div className="relative">
+                  <span className="absolute -bottom-8 -left-8">
+                    <svg
+                      width="93"
+                      height="93"
+                      viewBox="0 0 93 93"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <circle
+                        cx="2.5"
+                        cy="2.5"
+                        r="2.5"
+                        fill={theme === "light" ? "#00BF63" : "white"}
+                      />
+                      <circle
+                        cx="2.5"
+                        cy="24.5"
+                        r="2.5"
+                        fill={theme === "light" ? "#00BF63" : "white"}
+                      />
+                      <circle
+                        cx="2.5"
+                        cy="46.5"
+                        r="2.5"
+                        fill={theme === "light" ? "#00BF63" : "white"}
+                      />
+                      <circle
+                        cx="2.5"
+                        cy="68.5"
+                        r="2.5"
+                        fill={theme === "light" ? "#00BF63" : "white"}
+                      />
+                      <circle
+                        cx="2.5"
+                        cy="90.5"
+                        r="2.5"
+                        fill={theme === "light" ? "#00BF63" : "white"}
+                      />
+                      <circle
+                        cx="24.5"
+                        cy="2.5"
+                        r="2.5"
+                        fill={theme === "light" ? "#00BF63" : "white"}
+                      />
+                      <circle
+                        cx="24.5"
+                        cy="24.5"
+                        r="2.5"
+                        fill={theme === "light" ? "#00BF63" : "white"}
+                      />
+                      <circle
+                        cx="24.5"
+                        cy="46.5"
+                        r="2.5"
+                        fill={theme === "light" ? "#00BF63" : "white"}
+                      />
+                      <circle
+                        cx="24.5"
+                        cy="68.5"
+                        r="2.5"
+                        fill={theme === "light" ? "#00BF63" : "white"}
+                      />
+                      <circle
+                        cx="24.5"
+                        cy="90.5"
+                        r="2.5"
+                        fill={theme === "light" ? "#00BF63" : "white"}
+                      />
+                      <circle
+                        cx="46.5"
+                        cy="2.5"
+                        r="2.5"
+                        fill={theme === "light" ? "#00BF63" : "white"}
+                      />
+                      <circle
+                        cx="46.5"
+                        cy="24.5"
+                        r="2.5"
+                        fill={theme === "light" ? "#00BF63" : "white"}
+                      />
+                      <circle
+                        cx="46.5"
+                        cy="46.5"
+                        r="2.5"
+                        fill={theme === "light" ? "#00BF63" : "white"}
+                      />
+                      <circle
+                        cx="46.5"
+                        cy="68.5"
+                        r="2.5"
+                        fill={theme === "light" ? "#00BF63" : "white"}
+                      />
+                      <circle
+                        cx="46.5"
+                        cy="90.5"
+                        r="2.5"
+                        fill={theme === "light" ? "#00BF63" : "white"}
+                      />
+                      <circle
+                        cx="68.5"
+                        cy="2.5"
+                        r="2.5"
+                        fill={theme === "light" ? "#00BF63" : "white"}
+                      />
+                      <circle
+                        cx="68.5"
+                        cy="24.5"
+                        r="2.5"
+                        fill={theme === "light" ? "#00BF63" : "white"}
+                      />
+                      <circle
+                        cx="68.5"
+                        cy="46.5"
+                        r="2.5"
+                        fill={theme === "light" ? "#00BF63" : "white"}
+                      />
+                      <circle
+                        cx="68.5"
+                        cy="68.5"
+                        r="2.5"
+                        fill={theme === "light" ? "#00BF63" : "white"}
+                      />
+                      <circle
+                        cx="68.5"
+                        cy="90.5"
+                        r="2.5"
+                        fill={theme === "light" ? "#00BF63" : "white"}
+                      />
+                      <circle
+                        cx="90.5"
+                        cy="2.5"
+                        r="2.5"
+                        fill={theme === "light" ? "#00BF63" : "white"}
+                      />
+                      <circle
+                        cx="90.5"
+                        cy="24.5"
+                        r="2.5"
+                        fill={theme === "light" ? "#00BF63" : "white"}
+                      />
+                      <circle
+                        cx="90.5"
+                        cy="46.5"
+                        r="2.5"
+                        fill={theme === "light" ? "#00BF63" : "white"}
+                      />
+                      <circle
+                        cx="90.5"
+                        cy="68.5"
+                        r="2.5"
+                        fill={theme === "light" ? "#00BF63" : "white"}
+                      />
+                      <circle
+                        cx="90.5"
+                        cy="90.5"
+                        r="2.5"
+                        fill={theme === "light" ? "#00BF63" : "white"}
+                      />
+                    </svg>
+                  </span>
+                </div>
               </div>
             </div>
           </div>
