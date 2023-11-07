@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import toast from "react-hot-toast";
 import { FiSend } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
@@ -41,9 +42,16 @@ const JobByTabCard = ({ job }) => {
           </div>
         </div>
         <div className="2xl:px-6 pb-4 xl:pb-0 w-full xl:w-auto px-4 xl:px-3 space-y-2">
-          <button className="bg-job-primary hidden w-full xl:w-auto dark:hover:bg-white dark:hover:text-black hover:bg-black hover:scale-105 duration-300 text-white font-medium  2xl:text-lg  2xl:py-4  2xl:px-5 py-3 px-3 rounded-md xl:flex justify-center items-center">
-            <FiSend className="mr-2" /> View Details
-          </button>
+          <Link to={`/job/${_id}`}>
+            <button
+              onClick={() =>
+                toast.error("You have to log in first to view details")
+              }
+              className="bg-job-primary hidden w-full xl:w-auto dark:hover:bg-white dark:hover:text-black hover:bg-black hover:scale-105 duration-300 text-white font-medium  2xl:text-lg  2xl:py-4  2xl:px-5 py-3 px-3 rounded-md xl:flex justify-center items-center"
+            >
+              <FiSend className="mr-2" /> View Details
+            </button>
+          </Link>
           <h3 className=" text-base  text-center">
             Applicants: <span className="font-bold">{jobApplicantsNumber}</span>
           </h3>
@@ -76,9 +84,17 @@ const JobByTabCard = ({ job }) => {
           </h3>
         </div>
       </div>
-      <button className="bg-job-primary xl:hidden w-full xl:w-auto dark:hover:bg-white dark:hover:text-black hover:bg-black hover:scale-105 duration-300 text-white font-medium  2xl:text-lg  2xl:py-4  2xl:px-5 py-3 px-3 rounded-md flex justify-center items-center rounded-tl-none rounded-tr-none">
-        <FiSend className="mr-2" /> View Details
-      </button>
+
+      <Link to={`/job/${_id}`}>
+        <button
+          onClick={() =>
+            toast.error("You have to log in first to view details")
+          }
+          className="bg-job-primary xl:hidden w-full xl:w-auto dark:hover:bg-white dark:hover:text-black hover:bg-black hover:scale-105 duration-300 text-white font-medium  2xl:text-lg  2xl:py-4  2xl:px-5 py-3 px-3 rounded-md flex justify-center items-center rounded-tl-none rounded-tr-none"
+        >
+          <FiSend className="mr-2" /> View Details
+        </button>
+      </Link>
     </div>
   );
 };

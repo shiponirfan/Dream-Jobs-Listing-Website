@@ -1,20 +1,29 @@
-import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
-import useAuth from "../../hooks/useAuth";
 import useAxios from "../../hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import JobByTabCard from "./JobByTabCard";
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const JobByTab = () => {
   const axios = useAxios();
-  const { user } = useAuth();
-  const { isLoading, data: jobByTab } = useQuery({
-    queryKey: ["jobsByTab"],
+  const [selectedJobCategory, setSelectedJobCategory] = useState("");
+  const {
+    isLoading,
+    refetch,
+    data: jobByTab,
+  } = useQuery({
+    queryKey: ["jobsByTabs"],
     queryFn: async () => {
-      const res = await axios.get(`/jobs`);
+      const res = await axios.get(
+        `/jobs?jobCategory=${selectedJobCategory}&pages=${1}&limit=${6}`
+      );
       return res.data;
     },
   });
+  useEffect(() => {
+    refetch("jobsByTabs");
+  }, [selectedJobCategory, refetch]);
   return (
     <div className="dark:bg-gray-900 dark:text-white">
       <div className="container mx-auto px-6 lg:px-8  lg:py-20 py-10">
@@ -24,53 +33,80 @@ const JobByTab = () => {
             Find Your Career You Deserve It
           </h3>
         </div>
-        <Tabs>
+        <div>
           <div className="">
-            <TabList className="tabs font-bold items-center justify-center bg-transparent">
-              <Tab className="py-3 px-6 dark:text-white border focus-visible:outline-none cursor-pointer hover:bg-job-primary hover:text-white duration-300 text-black">
+            <div className="tabs font-bold items-center justify-center bg-transparent">
+              <button
+                onClick={() => setSelectedJobCategory("")}
+                className={`${
+                  selectedJobCategory === "" ? "bg-job-primary text-white" : ""
+                } py-3 px-6 dark:text-white border focus-visible:outline-none cursor-pointer hover:bg-job-primary hover:text-white duration-300 text-black`}
+              >
                 All Jobs
-              </Tab>
-              <Tab className="py-3 px-6 dark:text-white border focus-visible:outline-none cursor-pointer hover:bg-job-primary hover:text-white duration-300 text-black">
+              </button>
+              <button
+                onClick={() => setSelectedJobCategory("remote-job")}
+                className={`${
+                  selectedJobCategory === "remote-job"
+                    ? "bg-job-primary text-white"
+                    : ""
+                } py-3 px-6 dark:text-white border focus-visible:outline-none cursor-pointer hover:bg-job-primary hover:text-white duration-300 text-black`}
+              >
                 Remote Job
-              </Tab>
-              <Tab className="py-3 px-6 dark:text-white border focus-visible:outline-none cursor-pointer hover:bg-job-primary hover:text-white duration-300 text-black">
+              </button>
+              <button
+                onClick={() => setSelectedJobCategory("on-site-job")}
+                className={`${
+                  selectedJobCategory === "on-site-job"
+                    ? "bg-job-primary text-white"
+                    : ""
+                } py-3 px-6 dark:text-white border focus-visible:outline-none cursor-pointer hover:bg-job-primary hover:text-white duration-300 text-black`}
+              >
                 On Site Job
-              </Tab>
-              <Tab className="py-3 px-6 dark:text-white border focus-visible:outline-none cursor-pointer hover:bg-job-primary hover:text-white duration-300 text-black">
+              </button>
+              <button
+                onClick={() => setSelectedJobCategory("hybrid")}
+                className={`${
+                  selectedJobCategory === "hybrid"
+                    ? "bg-job-primary text-white"
+                    : ""
+                } py-3 px-6 dark:text-white border focus-visible:outline-none cursor-pointer hover:bg-job-primary hover:text-white duration-300 text-black`}
+              >
                 Hybrid
-              </Tab>
-              <Tab className="py-3 px-6 dark:text-white border focus-visible:outline-none cursor-pointer hover:bg-job-primary hover:text-white duration-300 text-black">
+              </button>
+              <button
+                onClick={() => setSelectedJobCategory("part-time")}
+                className={`${
+                  selectedJobCategory === "part-time"
+                    ? "bg-job-primary text-white"
+                    : ""
+                } py-3 px-6 dark:text-white border focus-visible:outline-none cursor-pointer hover:bg-job-primary hover:text-white duration-300 text-black`}
+              >
                 Part Time
-              </Tab>
-            </TabList>
+              </button>
+            </div>
           </div>
-          <div className="lg:py-20 py-12">
+          <div className="lg:pt-20 pt-12">
             {isLoading ? (
               <LoadingSpinner />
             ) : (
-              <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 ">
-                {jobByTab?.map((job) => (
-                  <JobByTabCard key={job._id} job={job}></JobByTabCard>
-                ))}
-              </div>
+              <>
+                <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 ">
+                  {jobByTab?.map((job) => (
+                    <JobByTabCard key={job._id} job={job}></JobByTabCard>
+                  ))}
+                </div>
+                <div className="text-center mt-12">
+                  <Link to="all-jobs">
+                    <button className="bg-job-primary dark:hover:bg-white dark:hover:text-black hover:bg-black hover:scale-105 duration-300 text-white font-medium  2xl:text-lg  py-3 px-6 rounded-md">
+                      See All Jobs
+                    </button>
+                  </Link>
+                </div>
+              </>
             )}
           </div>
-          <TabPanel>
-            <h2 className="font-bold text-3xl">All Jobs</h2>
-          </TabPanel>
-          <TabPanel>
-            <h2 className="font-bold text-3xl">Remote Job</h2>
-          </TabPanel>
-          <TabPanel>
-            <h2 className="font-bold text-3xl">On Site Job</h2>
-          </TabPanel>
-          <TabPanel>
-            <h2 className="font-bold text-3xl">Hybrid</h2>
-          </TabPanel>
-          <TabPanel>
-            <h2 className="font-bold text-3xl">Part Time</h2>
-          </TabPanel>
-        </Tabs>
+        </div>
       </div>
     </div>
   );
