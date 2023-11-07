@@ -3,7 +3,7 @@ import useAuth from "../../hooks/useAuth";
 const HomeBanner = () => {
   const { theme } = useAuth();
   return (
-    <div className="lg:py-28 md:py-20 py-14 dark:bg-gray-800 dark:text-white">
+    <div className="lg:py-28 md:py-20 py-14 bg-job-secondary dark:bg-gray-800 dark:text-white">
       <div className="container mx-auto px-6 lg:px-8 flex md:flex-row flex-col justify-between items-center md:gap-4 gap-2">
         <div className="space-y-4 md:w-1/2">
           <h3 className="font-medium text-job-primary">

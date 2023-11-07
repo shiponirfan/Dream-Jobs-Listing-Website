@@ -54,7 +54,7 @@ const AppliedJobs = () => {
       ></Breadcrumbs>
       <div className="dark:bg-gray-800 pt-14">
         <div className="container mx-auto px-6 lg:px-8">
-          <div className="py-10 px-8 border border-job-primary rounded-lg  flex justify-between items-center gap-8  dark:bg-gray-900 dark:text-white">
+          <div className="py-6 px-6 border border-job-primary rounded-lg  flex justify-between items-center gap-8  dark:bg-gray-900 dark:text-white">
             <div className="">
               <h2 className="text-2xl font-bold">
                 View All Your Job Applications

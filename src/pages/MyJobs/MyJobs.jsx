@@ -33,7 +33,7 @@ const MyJobs = () => {
 
       <div className="xl:py-20 lg:py-14 py-10 dark:bg-gray-800">
         <div className="container mx-auto px-6 lg:px-8">
-          {myJobs.map((job) => (
+          {myJobs?.map((job) => (
             <MyJobsCard key={job._id} job={job}></MyJobsCard>
           ))}
         </div>
