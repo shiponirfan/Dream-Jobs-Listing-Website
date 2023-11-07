@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import loginSvg from "../../assets/icons/Login-amico.svg";
 import logo from "../../assets/logo/dreamjoblogo.png";
 import logoDark from "../../assets/logo/dreamjoblogofordark.png";
@@ -6,6 +6,7 @@ import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 const Login = () => {
   const { theme, logIn, googleLogin } = useAuth();
+  const location = useLocation();
   const navigate = useNavigate();
 
   //   Login
@@ -17,7 +18,7 @@ const Login = () => {
     logIn(email, password)
       .then(() => {
         toast.success("Logged in Successfully", { id: loginTost });
-        navigate(location?.state ? location.state : "/");
+        navigate(location?.state ? location?.state : "/");
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -38,7 +39,7 @@ const Login = () => {
     googleLogin()
       .then(() => {
         toast.success("Successfully Login");
-        navigate(location?.state ? location.state : "/");
+        navigate(location?.state ? location?.state : "/");
       })
       .catch((error) => {
         toast.error("Logged in Failed");
