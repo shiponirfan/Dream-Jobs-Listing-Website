@@ -4,7 +4,7 @@ import { FiSend } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
-const JobByTabCard = ({ job }) => {
+const AllJobsTable = ({ job }) => {
   const { user } = useAuth();
   const {
     _id,
@@ -105,8 +105,8 @@ const JobByTabCard = ({ job }) => {
   );
 };
 
-JobByTabCard.propTypes = {
+AllJobsTable.propTypes = {
   job: PropTypes.object,
 };
 
-export default JobByTabCard;
+export default AllJobsTable;
