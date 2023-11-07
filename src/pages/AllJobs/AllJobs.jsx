@@ -1,6 +1,5 @@
 import useAxios from "../../hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
-import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import AllJobsTable from "./AllJobsTable";
@@ -12,6 +11,7 @@ const AllJobs = () => {
   const [selectedJobCategory, setSelectedJobCategory] = useState("");
   const [selectedHandleSort, setSelectedHandleSort] = useState("");
   const [searchfield, setSearchfield] = useState("");
+  const [pages, setPages] = useState(1);
   const {
     isLoading,
     refetch,
@@ -20,7 +20,7 @@ const AllJobs = () => {
     queryKey: ["jobsByTabs"],
     queryFn: async () => {
       const res = await axios.get(
-        `/jobs?&jobTitle=${searchfield}&jobCategory=${selectedJobCategory}&pages=${1}&limit=${10}&sort=${selectedHandleSort}`
+        `/jobs?&jobTitle=${searchfield}&jobCategory=${selectedJobCategory}&pages=${pages}&limit=${10}&sort=${selectedHandleSort}`
       );
       return res.data;
     },
@@ -37,7 +37,19 @@ const AllJobs = () => {
 
   useEffect(() => {
     refetch("jobsByTabs");
-  }, [selectedJobCategory, selectedHandleSort, searchfield, refetch]);
+  }, [selectedJobCategory, selectedHandleSort, searchfield, pages, refetch]);
+
+  const handlePrevious = () => {
+    if (pages > 1) {
+      setPages(pages - 1);
+    }
+  };
+  const totalPages = Math.ceil(jobByTab?.totalPagesCount / 10);
+  const handleNext = () => {
+    if (pages < totalPages) {
+      setPages(pages + 1);
+    }
+  };
 
   return (
     <div>
@@ -112,16 +124,43 @@ const AllJobs = () => {
           ) : (
             <>
               <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 ">
-                {jobByTab?.map((job) => (
+                {jobByTab?.result?.map((job) => (
                   <AllJobsTable key={job._id} job={job}></AllJobsTable>
                 ))}
               </div>
               <div className="text-center mt-12">
-                <Link to="all-jobs">
-                  <button className="bg-job-primary dark:hover:bg-white dark:hover:text-black hover:bg-black hover:scale-105 duration-300 text-white font-medium  2xl:text-lg  py-3 px-6 rounded-md">
-                    See All Jobs
+                <div className="join">
+                  <button
+                    onClick={handlePrevious}
+                    className="join-item btn hover:bg-job-primary hover:text-white"
+                  >
+                    «
                   </button>
-                </Link>
+                  {Array(totalPages)
+                    .fill(0)
+                    .map((job, index) => {
+                      const pagination = index + 1;
+                      return (
+                        <button
+                          key={index}
+                          onClick={() => setPages(pagination)}
+                          className={` ${
+                            pagination === pages
+                              ? "bg-job-primary text-white"
+                              : ""
+                          } join-item btn hover:bg-job-primary hover:text-white`}
+                        >
+                          {pagination}
+                        </button>
+                      );
+                    })}
+                  <button
+                    onClick={handleNext}
+                    className="join-item btn hover:bg-job-primary hover:text-white"
+                  >
+                    »
+                  </button>
+                </div>
               </div>
             </>
           )}

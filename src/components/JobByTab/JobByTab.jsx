@@ -92,7 +92,7 @@ const JobByTab = () => {
             ) : (
               <>
                 <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 ">
-                  {jobByTab?.map((job) => (
+                  {jobByTab?.result?.result?.map((job) => (
                     <JobByTabCard key={job._id} job={job}></JobByTabCard>
                   ))}
                 </div>
