@@ -12,6 +12,7 @@ import AllJobs from "../pages/AllJobs/AllJobs";
 import Blogs from "../pages/Blogs/Blogs";
 import UpdateJob from "../pages/UpdateJob/UpdateJob";
 import JobDetails from "../pages/JobDetails/JobDetails";
+import BlogDetailsOne from "../pages/Blogs/BlogDetailsOne";
 
 const Routes = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const Routes = createBrowserRouter([
       {
         path: "blogs",
         element: <Blogs />,
+      },
+      {
+        path: "blog/what-is-an-access-token-and-refresh-token",
+        element: <BlogDetailsOne />,
       },
       {
         path: "applied-jobs",
@@ -70,7 +75,6 @@ const Routes = createBrowserRouter([
             <JobDetails />
           </PrivateRoutes>
         ),
-        loader: ({params}) => fetch(`http://localhost:5000/api/v1/job/${params.id}`),
       },
       {
         path: "update/:id",
@@ -79,7 +83,8 @@ const Routes = createBrowserRouter([
             <UpdateJob />
           </PrivateRoutes>
         ),
-        loader: ({params}) => fetch(`http://localhost:5000/api/v1/job/${params.id}`),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/api/v1/job/${params.id}`),
       },
     ],
   },

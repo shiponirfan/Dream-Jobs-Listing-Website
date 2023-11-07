@@ -1,4 +1,3 @@
-import { useLoaderData } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import logo from "../../assets/logo/dreamjoblogo.png";
 import logoDark from "../../assets/logo/dreamjoblogofordark.png";
@@ -6,13 +5,62 @@ import { FiSend } from "react-icons/fi";
 import { RiCalendarEventLine, RiMoneyDollarCircleLine } from "react-icons/ri";
 import Swal from "sweetalert2";
 import { useState } from "react";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import useAxios from "../../hooks/useAxios";
 import toast from "react-hot-toast";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
+import { useParams } from "react-router-dom";
 const JobDetails = () => {
-  const jobDetails = useLoaderData();
+  const params = useParams();
   const axios = useAxios();
+  const QueryClient = useQueryClient();
   const { user, theme } = useAuth();
+
+  const [appliedJobData, setAppliedJobData] = useState("");
+  const [appliedJobLoader, setAppliedJobLoader] = useState("");
+  const [applicantCount, setApplicantCount] = useState("");
+
+  const { isLoading, data: jobDetailsById } = useQuery({
+    queryKey: ["jobDetailsId"],
+    queryFn: async () => {
+      const res = await axios.get(`/job/${params.id}`);
+      return res.data;
+    },
+  });
+
+  const { mutate } = useMutation({
+    mutationKey: ["jobsByEmail"],
+    mutationFn: async () => {
+      return await axios.post("/user/applied-job", appliedJobData);
+    },
+    onSuccess: () => {
+      updateApplicantCount();
+      Swal.fire({
+        title: "Resume Submitted Successfully",
+        icon: "success",
+        confirmButtonColor: "#00BF63",
+      });
+      document.getElementById("my_modal_3").close();
+      appliedJobLoader.reset();
+    },
+  });
+
+  const { mutate: updateApplicantCount } = useMutation({
+    mutationKey: ["updateApplicantCount"],
+    mutationFn: async () => {
+      return await axios.post(`/job/update-applicant-count`, {
+        applicantCount,
+      });
+    },
+    onSuccess: () => {
+      QueryClient.invalidateQueries({ queryKey: ["jobDetailsId"] });
+    },
+  });
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+
   const {
     _id,
     jobTitle,
@@ -24,7 +72,7 @@ const JobDetails = () => {
     jobPostingDate,
     jobDescription,
     userEmail,
-  } = jobDetails;
+  } = jobDetailsById;
 
   const handleSendMessage = (e) => {
     e.preventDefault();
@@ -56,25 +104,6 @@ const JobDetails = () => {
     document.getElementById("my_modal_3").showModal();
   };
 
-  const [appliedJobData, setAppliedJobData] = useState("");
-  const [appliedJobLoader, setAppliedJobLoader] = useState("");
-
-  const { mutate } = useMutation({
-    mutationKey: ["jobsByEmail"],
-    mutationFn: async () => {
-      return await axios.post("/user/applied-job", appliedJobData);
-    },
-    onSuccess: () => {
-      Swal.fire({
-        title: "Resume Submitted Successfully",
-        icon: "success",
-        confirmButtonColor: "#00BF63",
-      });
-      document.getElementById("my_modal_3").close();
-      appliedJobLoader.reset();
-    },
-  });
-
   const handleJobApply = (e) => {
     e.preventDefault();
 
@@ -92,6 +121,7 @@ const JobDetails = () => {
 
     setAppliedJobData(applyUserResume);
     setAppliedJobLoader(form);
+    setApplicantCount(_id);
     mutate();
   };
 
