@@ -8,7 +8,7 @@ import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 const MyJobs = () => {
   const axios = useAxios();
   const { user } = useAuth();
-  const { isPending, data: myJobs } = useQuery({
+  const { isLoading, data: myJobs } = useQuery({
     queryKey: ["jobsByEmail"],
     queryFn: async () => {
       const res = await axios.get(`/jobs?email=${user.email}`);
@@ -16,7 +16,7 @@ const MyJobs = () => {
     },
   });
 
-  if (isPending) {
+  if (isLoading) {
     return <LoadingSpinner />;
   }
   return (
