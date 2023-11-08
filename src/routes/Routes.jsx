@@ -13,6 +13,8 @@ import Blogs from "../pages/Blogs/Blogs";
 import UpdateJob from "../pages/UpdateJob/UpdateJob";
 import JobDetails from "../pages/JobDetails/JobDetails";
 import BlogDetailsOne from "../pages/Blogs/BlogDetailsOne";
+import BlogDetailsTwo from "../pages/Blogs/BlogDetailsTwo";
+import BlogDetailsThree from "../pages/Blogs/BlogDetailsThree";
 
 const Routes = createBrowserRouter([
   {
@@ -43,6 +45,14 @@ const Routes = createBrowserRouter([
       {
         path: "blog/what-is-an-access-token-and-refresh-token",
         element: <BlogDetailsOne />,
+      },
+      {
+        path: "blog/understanding-expressjs-and-nestjs",
+        element: <BlogDetailsTwo />,
+      },
+      {
+        path: "blog/server-side-applications-with-nodejs-express-and-mongodb",
+        element: <BlogDetailsThree />,
       },
       {
         path: "applied-jobs",
@@ -84,7 +94,9 @@ const Routes = createBrowserRouter([
           </PrivateRoutes>
         ),
         loader: ({ params }) =>
-          fetch(`https://dream-jobs-listing-website-server-side.vercel.app/job/${params.id}`),
+          fetch(
+            `https://dream-jobs-listing-website-server-side.vercel.app/job/${params.id}`
+          ),
       },
     ],
   },

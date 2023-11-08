@@ -9,7 +9,7 @@ const PrivateRoutes = ({ children }) => {
 
   // Check Loading
   if (loading) {
-    return <LoadingSpinner/>
+    return <LoadingSpinner />;
   }
 
   // Check User
