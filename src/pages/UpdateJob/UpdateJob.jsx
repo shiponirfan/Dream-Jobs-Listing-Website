@@ -3,7 +3,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import jobImg from "../../assets/images/job3.jpg";
-import resumeSvg from "../../assets/icons/Job-hunt-cuate.svg";
+import resumeSvg from "../../assets/icons/update-amico.svg";
 import useAuth from "../../hooks/useAuth";
 import useAxios from "../../hooks/useAxios";
 import { useLoaderData } from "react-router-dom";

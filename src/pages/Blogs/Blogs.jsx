@@ -26,7 +26,7 @@ const Blogs = () => {
       ></Breadcrumbs>
       <div className="xl:py-28 lg:py-20 py-10 dark:bg-gray-800 dark:text-white">
         <div className="container mx-auto grid xl:grid-cols-3 2xl:gap-10 gap-6 xl:px-0 lg:px-8 px-6">
-          <div className="space-y-4 border-2 2xl:p-8 p-4 rounded-lg group">
+          <div data-aos="fade-up" data-aos-delay="100" className="space-y-4 border-2 2xl:p-8 p-4 rounded-lg group">
             <div className="w-full xl:h-[200px] md:h-[400px] h-[200px] overflow-hidden rounded-lg">
               <Link to="/blog/what-is-an-access-token-and-refresh-token?">
                 <img
@@ -69,7 +69,7 @@ const Blogs = () => {
               </h3>
             </div>
           </div>
-          <div className="space-y-4 border-2 2xl:p-8 p-4 rounded-lg group">
+          <div data-aos="fade-up" data-aos-delay="200" className="space-y-4 border-2 2xl:p-8 p-4 rounded-lg group">
             <div className="w-full xl:h-[200px] md:h-[400px] h-[200px] overflow-hidden rounded-lg">
               <Link to="/blog/understanding-expressjs-and-nestjs">
                 <img
@@ -111,7 +111,7 @@ const Blogs = () => {
               </h3>
             </div>
           </div>
-          <div className="space-y-4 border-2 2xl:p-8 p-4 rounded-lg group">
+          <div data-aos="fade-up" data-aos-delay="300" className="space-y-4 border-2 2xl:p-8 p-4 rounded-lg group">
             <div className="w-full xl:h-[200px] md:h-[400px] h-[200px] overflow-hidden rounded-lg">
               <Link to="/blog/server-side-applications-with-nodejs-express-and-mongodb">
                 <img

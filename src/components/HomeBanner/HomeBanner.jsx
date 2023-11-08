@@ -18,18 +18,18 @@ const HomeBanner = () => {
     <div className="lg:py-28 md:py-20 py-14 bg-job-secondary dark:bg-gray-800 dark:text-white">
       <div className="container mx-auto px-6 lg:px-8 flex md:flex-row flex-col justify-between items-center md:gap-4 gap-2">
         <div className="space-y-4 md:w-1/2">
-          <h3 className="font-medium text-job-primary">
+          <h3  className="font-medium text-job-primary">
             We Have 207,000+ Live Jobs
           </h3>
           <h2 className="font-bold 2xl:text-7xl xl:text-6xl lg:text-5xl md:text-4xl text-3xl">
             Your <span className="text-job-primary">Dream Job</span> Is Waiting
             For You
           </h2>
-          <p className="font-medium text-job-primary">
+          <p  className="font-medium text-job-primary">
             Type your keyword, then click search to find your job.
           </p>
 
-          <form onSubmit={handleHomeSearchBtn}>
+          <form  onSubmit={handleHomeSearchBtn}>
             <div className="join">
               <div>
                 <div>
@@ -69,7 +69,7 @@ const HomeBanner = () => {
         <div className="md:w-1/2 ">
           <div className="w-full px-4 ">
             <div className="lg:ml-auto lg:text-right">
-              <div className=" inline-block pt-11 lg:pt-0">
+              <div  className=" inline-block pt-11 lg:pt-0">
                 <img
                   src="https://i.ibb.co/2jzfyXz/hero-image-01.png"
                   alt="hero "

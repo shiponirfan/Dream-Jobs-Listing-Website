@@ -13,6 +13,8 @@ import {
 import { app } from "../config/firebase.config";
 import useAxios from "../hooks/useAxios";
 import { HelmetProvider } from "react-helmet-async";
+import AOS from "aos";
+import "aos/dist/aos.css";
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
@@ -22,7 +24,9 @@ const AuthProvider = ({ children }) => {
   const [homeSearchJobTypes, setHomeSearchJobTypes] = useState("");
   const googleProvider = new GoogleAuthProvider();
   const axios = useAxios();
-
+  useEffect(() => {
+    AOS.init({ duration: 1000, delay: 300 });
+  }, []);
   // Dark Mode Theme
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"

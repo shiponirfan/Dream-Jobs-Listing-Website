@@ -28,14 +28,28 @@ const JobByTab = () => {
     <div className="dark:bg-gray-900 dark:text-white">
       <div className="container mx-auto px-6 lg:px-8  lg:py-20 py-10">
         <div className="text-center pb-10 space-y-3">
-          <h2 className="font-bold text-5xl">Featured Jobs</h2>
-          <h3 className="font-medium text-lg">
+          <h2
+            data-aos="fade-up"
+            data-aos-delay="100"
+            className="font-bold text-5xl"
+          >
+            Featured Jobs
+          </h2>
+          <h3
+            data-aos="fade-up"
+            data-aos-delay="200"
+            className="font-medium text-lg"
+          >
             Find Your Career You Deserve It
           </h3>
         </div>
         <div>
           <div className="">
-            <div className="tabs font-bold items-center justify-center bg-transparent">
+            <div
+              data-aos="fade-up"
+              data-aos-delay="300"
+              className="tabs font-bold items-center justify-center bg-transparent"
+            >
               <button
                 onClick={() => setSelectedJobCategory("")}
                 className={`${
@@ -96,7 +110,11 @@ const JobByTab = () => {
                     <JobByTabCard key={job._id} job={job}></JobByTabCard>
                   ))}
                 </div>
-                <div className="text-center mt-12">
+                <div
+                  data-aos="fade-up"
+                  data-aos-delay="100"
+                  className="text-center mt-12"
+                >
                   <Link to="all-jobs">
                     <button className="bg-job-primary dark:hover:bg-white dark:hover:text-black hover:bg-black hover:scale-105 duration-300 text-white font-medium  2xl:text-lg  py-3 px-6 rounded-md">
                       See All Jobs

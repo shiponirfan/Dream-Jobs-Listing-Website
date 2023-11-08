@@ -18,7 +18,7 @@ const JobByTabCard = ({ job }) => {
     userName,
   } = job;
   return (
-    <div className="">
+    <div data-aos="fade-up" data-aos-delay="100" className="">
       <div className="flex flex-col xl:flex-row items-center justify-between  border border-b-0 rounded-bl-none rounded-br-none rounded-md">
         <div className="flex w-full xl:w-auto flex-col xl:flex-row  items-center  flex-1 justify-between 2xl:gap-6 xl:gap-3 2xl:p-6 xl:p-3 border-r p-3 pb-0 xl:pb-3">
           <div className=" 2xl:w-36  2xl:h-32 lg:h-56 h-40 w-full  xl:w-28 xl:h-28 p-1  border rounded-md">

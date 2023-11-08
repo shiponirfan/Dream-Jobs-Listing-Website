@@ -111,7 +111,7 @@ const Navbar = () => {
             </label>
             <ul
               tabIndex={0}
-              className="space-y-3 p-6 dropdown-content mt-3 z-[1] shadow bg-base-100 dark:bg-gray-900 rounded-box w-52"
+              className="space-y-3 p-6 dropdown-content mt-3 w-52 z-[1] shadow bg-base-100 dark:bg-gray-900 rounded-box "
             >
               {navMenu}
             </ul>
@@ -182,7 +182,7 @@ const Navbar = () => {
                 </div>
                 <ul
                   tabIndex={0}
-                  className="mt-3 p-2 z-50 shadow  dark:border-2 menu menu-sm dropdown-content bg-base-100 dark:bg-gray-900 rounded-box w-52"
+                  className="mt-3 p-2 z-50 shadow  dark:border-2 menu menu-sm dropdown-content bg-base-100 dark:bg-gray-900 rounded-box z-50"
                 >
                   <div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
                     <div className="font-medium ">
