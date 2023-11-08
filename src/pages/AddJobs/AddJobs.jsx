@@ -7,6 +7,7 @@ import resumeSvg from "../../assets/icons/Job-hunt-cuate.svg";
 import useAuth from "../../hooks/useAuth";
 import useAxios from "../../hooks/useAxios";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 const AddJobs = () => {
   const { user } = useAuth();
   const axios = useAxios();
@@ -47,6 +48,9 @@ const AddJobs = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Add Job - Dream Jobs</title>
+      </Helmet>
       <Breadcrumbs
         image={jobImg}
         name={"Add Job"}

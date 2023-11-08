@@ -12,6 +12,7 @@ import {
 } from "firebase/auth";
 import { app } from "../config/firebase.config";
 import useAxios from "../hooks/useAxios";
+import { HelmetProvider } from "react-helmet-async";
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
@@ -111,7 +112,9 @@ const AuthProvider = ({ children }) => {
     userProfile,
   };
   return (
+    <HelmetProvider>
     <AuthContext.Provider value={AuthInfo}>{children}</AuthContext.Provider>
+    </HelmetProvider>
   );
 };
 AuthProvider.propTypes = {

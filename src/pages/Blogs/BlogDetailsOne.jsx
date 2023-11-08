@@ -6,6 +6,7 @@ import blog2 from "../../assets/images/blog1.1.png";
 import blog3 from "../../assets/images/blog1.2.jpg";
 import { RiCalendarEventLine } from "react-icons/ri";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 const BlogDetailsOne = () => {
   const handleSendMessage = (e) => {
     e.preventDefault();
@@ -18,6 +19,9 @@ const BlogDetailsOne = () => {
   };
   return (
     <div>
+      <Helmet>
+        <title>What is an access token and refresh token? - Blog</title>
+      </Helmet>
       <div className="w-full h-[220px] md:h-[350px] lg:h-[400px] xl:h-[500px]">
         <img
           className="w-full h-full object-cover"

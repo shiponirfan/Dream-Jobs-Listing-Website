@@ -6,9 +6,13 @@ import jobImg from "../../assets/images/job2.jpg";
 import blog1 from "../../assets/images/blog1.jpg";
 import { Link } from "react-router-dom";
 import { RiCalendarEventLine } from "react-icons/ri";
+import { Helmet } from "react-helmet-async";
 const Blogs = () => {
   return (
     <div>
+      <Helmet>
+        <title>Blogs - Dream Jobs</title>
+      </Helmet>
       <Breadcrumbs
         image={jobImg}
         name={"Blogs"}

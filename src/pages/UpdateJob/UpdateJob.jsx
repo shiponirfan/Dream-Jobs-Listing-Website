@@ -9,6 +9,7 @@ import useAxios from "../../hooks/useAxios";
 import { useLoaderData } from "react-router-dom";
 import { QueryClient, useMutation } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 const UpdateJob = () => {
   const updateJob = useLoaderData();
   const { user } = useAuth();
@@ -80,6 +81,9 @@ const UpdateJob = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Update Job - Dream Jobs</title>
+      </Helmet>
       <Breadcrumbs
         image={jobImg}
         name={"Update Job"}

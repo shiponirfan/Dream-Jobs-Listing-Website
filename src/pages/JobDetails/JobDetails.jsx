@@ -10,6 +10,7 @@ import useAxios from "../../hooks/useAxios";
 import toast from "react-hot-toast";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 const JobDetails = () => {
   const params = useParams();
   const axios = useAxios();
@@ -127,6 +128,9 @@ const JobDetails = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>{jobTitle ? jobTitle : 'Job Details'} - Dream Jobs</title>
+      </Helmet>
       <div className="w-full h-[500px]">
         <img
           className="w-full h-full object-cover"

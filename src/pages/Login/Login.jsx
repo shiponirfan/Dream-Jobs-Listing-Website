@@ -4,6 +4,7 @@ import logo from "../../assets/logo/dreamjoblogo.png";
 import logoDark from "../../assets/logo/dreamjoblogofordark.png";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 const Login = () => {
   const { theme, logIn, googleLogin } = useAuth();
   const location = useLocation();
@@ -49,6 +50,9 @@ const Login = () => {
 
   return (
     <div className="py-16  dark:bg-gray-800">
+      <Helmet>
+        <title>Login - Dream Jobs</title>
+      </Helmet>
       <div className="flex container px-6 lg:px-8 xl:px-40 gap-20 mx-auto overflow-hidden items-center rounded-lg ">
         <div className="hidden bg-cover lg:block lg:w-1/2">
           <img className="w-auto" src={loginSvg} alt="" />

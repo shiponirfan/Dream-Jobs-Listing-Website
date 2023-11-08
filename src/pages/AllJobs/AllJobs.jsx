@@ -5,6 +5,7 @@ import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import AllJobsTable from "./AllJobsTable";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import jobImg from "../../assets/images/job4.jpg";
+import { Helmet } from "react-helmet-async";
 
 const AllJobs = () => {
   const axios = useAxios();
@@ -53,6 +54,9 @@ const AllJobs = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>All Jobs - Dream Jobs</title>
+      </Helmet>
       <Breadcrumbs
         image={jobImg}
         name={"All Jobs"}

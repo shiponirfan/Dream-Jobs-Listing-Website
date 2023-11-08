@@ -5,6 +5,7 @@ import MyJobsCard from "./MyJobsCard";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import jobImg from "../../assets/images/job2.jpg";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
+import { Helmet } from "react-helmet-async";
 const MyJobs = () => {
   const axios = useAxios();
   const { user } = useAuth();
@@ -21,6 +22,9 @@ const MyJobs = () => {
   }
   return (
     <div>
+      <Helmet>
+        <title>My Jobs - Dream Jobs</title>
+      </Helmet>
       <Breadcrumbs
         image={jobImg}
         name={"My Jobs"}

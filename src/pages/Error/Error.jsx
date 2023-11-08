@@ -2,9 +2,13 @@ import Lottie from "lottie-react";
 import errorLottie from "../../assets/lottie/error404.json";
 import { Link } from "react-router-dom";
 import { FiHome } from "react-icons/fi";
+import { Helmet } from "react-helmet-async";
 const Error = () => {
   return (
     <div className="h-screen flex flex-col justify-center items-center dark:bg-gray-900">
+      <Helmet>
+        <title>Page Not Found - Dream Jobs</title>
+      </Helmet>
       <div className="max-w-3xl mx-auto ">
         <Lottie animationData={errorLottie} loop={true} />;
       </div>
