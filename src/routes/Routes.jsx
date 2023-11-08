@@ -95,7 +95,7 @@ const Routes = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(
-            `https://dream-jobs-listing-website-server-side.vercel.app/job/${params.id}`
+            `https://dream-jobs-listing-website-server-side.vercel.app/api/v1/job/${params.id}`
           ),
       },
     ],

@@ -6,6 +6,7 @@ import AllJobsTable from "./AllJobsTable";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import jobImg from "../../assets/images/job4.jpg";
 import { Helmet } from "react-helmet-async";
+import NoDataFound from "../../components/NoDataFound/NoDataFound";
 
 const AllJobs = () => {
   const axios = useAxios();
@@ -127,45 +128,60 @@ const AllJobs = () => {
             <LoadingSpinner />
           ) : (
             <>
-              <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 ">
-                {jobByTab?.result?.map((job) => (
-                  <AllJobsTable key={job._id} job={job}></AllJobsTable>
-                ))}
-              </div>
-              <div className="text-center mt-12">
-                <div className="join">
-                  <button
-                    onClick={handlePrevious}
-                    className="join-item btn hover:bg-job-primary hover:text-white"
-                  >
-                    «
-                  </button>
-                  {Array(totalPages)
-                    .fill(0)
-                    .map((job, index) => {
-                      const pagination = index + 1;
-                      return (
-                        <button
-                          key={index}
-                          onClick={() => setPages(pagination)}
-                          className={` ${
-                            pagination === pages
-                              ? "bg-job-primary text-white"
-                              : ""
-                          } join-item btn hover:bg-job-primary hover:text-white`}
-                        >
-                          {pagination}
-                        </button>
-                      );
-                    })}
-                  <button
-                    onClick={handleNext}
-                    className="join-item btn hover:bg-job-primary hover:text-white"
-                  >
-                    »
-                  </button>
+              {jobByTab?.result?.length > 0 ? (
+                <>
+                  <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 ">
+                    {jobByTab?.result?.map((job) => (
+                      <AllJobsTable key={job._id} job={job}></AllJobsTable>
+                    ))}
+                  </div>
+                  <div className="text-center mt-12">
+                    <div className="join">
+                      <button
+                        onClick={handlePrevious}
+                        className="join-item btn hover:bg-job-primary hover:text-white"
+                      >
+                        «
+                      </button>
+                      {Array(totalPages)
+                        .fill(0)
+                        .map((job, index) => {
+                          const pagination = index + 1;
+                          return (
+                            <button
+                              key={index}
+                              onClick={() => setPages(pagination)}
+                              className={` ${
+                                pagination === pages
+                                  ? "bg-job-primary text-white"
+                                  : ""
+                              } join-item btn hover:bg-job-primary hover:text-white`}
+                            >
+                              {pagination}
+                            </button>
+                          );
+                        })}
+                      <button
+                        onClick={handleNext}
+                        className="join-item btn hover:bg-job-primary hover:text-white"
+                      >
+                        »
+                      </button>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <div className=" space-y-3 text-center px-6 lg:px-8 dark:text-white py-20 dark:bg-gray-800">
+                  <h2 className="font-bold text-6xl text-job-primary">Oops!</h2>
+                  <h2 className="text-xl font-bold">
+                    It seems there is no data available at the moment.
+                  </h2>
+                  <h3 className="text-lg font-medium">
+                    {" "}
+                    Please check back later or try a different search.
+                  </h3>
                 </div>
-              </div>
+              )}
             </>
           )}
         </div>

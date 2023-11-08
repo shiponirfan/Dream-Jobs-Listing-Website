@@ -6,6 +6,7 @@ import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import jobImg from "../../assets/images/job2.jpg";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import { Helmet } from "react-helmet-async";
+import NoDataFound from "../../components/NoDataFound/NoDataFound";
 const MyJobs = () => {
   const axios = useAxios();
   const { user } = useAuth();
@@ -35,13 +36,17 @@ const MyJobs = () => {
         }
       ></Breadcrumbs>
 
-      <div className="xl:py-20 lg:py-14 py-10 dark:bg-gray-800">
-        <div className="container mx-auto px-6 lg:px-8">
-          {myJobs?.result?.map((job) => (
-            <MyJobsCard key={job._id} job={job}></MyJobsCard>
-          ))}
+      {myJobs?.result?.length > 0 ? (
+        <div className="xl:py-20 lg:py-14 py-10 dark:bg-gray-800">
+          <div className="container mx-auto px-6 lg:px-8">
+            {myJobs?.result?.map((job) => (
+              <MyJobsCard key={job._id} job={job}></MyJobsCard>
+            ))}
+          </div>
         </div>
-      </div>
+      ) : (
+        <NoDataFound />
+      )}
     </div>
   );
 };

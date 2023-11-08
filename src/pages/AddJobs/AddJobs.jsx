@@ -6,13 +6,32 @@ import jobImg from "../../assets/images/job1.jpg";
 import resumeSvg from "../../assets/icons/Job-hunt-cuate.svg";
 import useAuth from "../../hooks/useAuth";
 import useAxios from "../../hooks/useAxios";
-import toast from "react-hot-toast";
 import { Helmet } from "react-helmet-async";
+import { useMutation } from "@tanstack/react-query";
+import Swal from "sweetalert2";
 const AddJobs = () => {
   const { user } = useAuth();
   const axios = useAxios();
   const [jobPostingDate, setJobPostingDate] = useState(new Date());
   const [applicationDeadline, setApplicationDeadline] = useState(new Date());
+  const [jobPostData, setJobPostData] = useState("");
+  const [getForm, setForm] = useState(null);
+
+  const { mutate } = useMutation({
+    mutationKey: ["jobsByEmail"],
+    mutationFn: async () => {
+      return await axios.post("/jobs", jobPostData);
+    },
+    onSuccess: () => {
+      Swal.fire({
+        title: "Job Posted Successfully",
+        icon: "success",
+        confirmButtonColor: "#00BF63",
+      });
+      getForm.reset();
+    },
+  });
+
   //   Add Job post
   const handleAddJob = (e) => {
     e.preventDefault();
@@ -37,13 +56,9 @@ const AddJobs = () => {
       jobApplicantsNumber,
       jobDescription,
     };
-
-    axios.post("/jobs", jobPost).then((res) => {
-      if (res.data.acknowledged) {
-        toast.success("Job Posted Successfully");
-        form.reset();
-      }
-    });
+    setJobPostData(jobPost);
+    mutate();
+    setForm(form);
   };
 
   return (
@@ -141,7 +156,7 @@ const AddJobs = () => {
                     />
                   </div>
                 </div>
-                
+
                 <div className="mt-4 flex justify-between items-center gap-4">
                   <div className="flex-1 ">
                     <label
