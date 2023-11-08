@@ -1,7 +1,19 @@
+import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
 const HomeBanner = () => {
-  const { theme } = useAuth();
+  const { theme, setHomeSearchFiled, setHomeSearchJobTypes } = useAuth();
+  const navigate = useNavigate();
+  const handleHomeSearchBtn = (e) => {
+    e.preventDefault();
+    const homeSearch = e.target.homeSearch.value;
+    const homeSearchJobTypes = e.target.homeSearchJobTypes.value;
+    setHomeSearchFiled(homeSearch);
+    setHomeSearchJobTypes(homeSearchJobTypes);
+    navigate('/all-jobs');
+
+  };
+
   return (
     <div className="lg:py-28 md:py-20 py-14 bg-job-secondary dark:bg-gray-800 dark:text-white">
       <div className="container mx-auto px-6 lg:px-8 flex md:flex-row flex-col justify-between items-center md:gap-4 gap-2">
@@ -17,29 +29,35 @@ const HomeBanner = () => {
             Type your keyword, then click search to find your job.
           </p>
 
-          <div className="join">
-            <div>
+          <form onSubmit={handleHomeSearchBtn}>
+            <div className="join">
               <div>
-                <input
-                  className="input w-28 md:w-36 lg:w-full input-bordered join-item focus:outline-0 dark:bg-gray-800 dark:border-gray-300"
-                  placeholder="Search"
-                />
+                <div>
+                  <input
+                    name="homeSearch"
+                    className="input w-28 md:w-36 lg:w-full input-bordered join-item focus:outline-0 dark:bg-gray-800 dark:border-gray-300"
+                    placeholder="Search"
+                  />
+                </div>
+              </div>
+              <select
+                name="homeSearchJobTypes"
+                className="select w-28 md:w-auto select-bordered join-item focus:outline-0 dark:bg-gray-800 dark:border-gray-300"
+              >
+                <option value="">All Jobs</option>
+                <option value="remote-job">Remote Job</option>
+                <option value="on-site-job">On Site Job</option>
+                <option value="hybrid">Hybrid</option>
+                <option value="part-time">Part Time</option>
+              </select>
+
+              <div>
+                <button className="btn join-item bg-job-primary hover:bg-green-600 text-white dark:border-job-primary">
+                  Search
+                </button>
               </div>
             </div>
-            <select className="select w-28 md:w-auto select-bordered join-item focus:outline-0 dark:bg-gray-800 dark:border-gray-300">
-              <option value="remote-job">Remote Job</option>
-              <option value="on-site-job">On Site Job</option>
-              <option value="hybrid">Hybrid</option>
-              <option value="part-time">Part Time</option>
-            </select>
-
-            <div>
-              <button className="btn join-item bg-job-primary hover:bg-green-600 text-white dark:border-job-primary">
-                Search
-              </button>
-            </div>
-
-          </div>
+          </form>
 
           <p className="text-gray-600 dark:text-gray-400">
             <span className="font-medium text-black dark:text-white">

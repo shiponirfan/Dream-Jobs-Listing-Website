@@ -85,10 +85,11 @@ const Navbar = () => {
       </li>
     </>
   );
+
   return (
     <div className="dark:bg-gray-900 dark:text-white drop-shadow-md bg-white xl:py-5 py-4">
       <nav className="container mx-auto px-6 lg:px-8 flex justify-between items-center">
-        <div className="flex items-center gap-3 lg:gap-6 xl:gap-16 ">
+        <div className="flex items-center gap-3 lg:gap-6 xl:gap-16">
           {/* Mobile Menu */}
 
           <div className="dropdown lg:hidden">

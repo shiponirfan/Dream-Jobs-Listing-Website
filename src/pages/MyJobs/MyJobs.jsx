@@ -3,7 +3,7 @@ import useAxios from "../../hooks/useAxios";
 import useAuth from "../../hooks/useAuth";
 import MyJobsCard from "./MyJobsCard";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
-import jobImg from "../../assets/images/job2.jpg";
+import jobImg from "../../assets/images/job5.jpg";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import { Helmet } from "react-helmet-async";
 import NoDataFound from "../../components/NoDataFound/NoDataFound";

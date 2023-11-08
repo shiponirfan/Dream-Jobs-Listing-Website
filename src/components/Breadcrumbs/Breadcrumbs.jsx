@@ -4,7 +4,7 @@ const Breadcrumbs = ({ image, name, breadCrumbs }) => {
   return (
     <div
       style={{ backgroundImage: `url(${image})` }}
-      className="h-44 md:h-64 bg-cover bg-no-repeat"
+      className="h-44 md:h-64 bg-cover bg-center bg-no-repeat"
     >
       <div className="bg-black bg-opacity-80 px-6 md:px-8 w-full h-full flex flex-col justify-center items-center  text-white text-center">
         <h2 className="font-bold text-3xl md:text-4xl lg:text-5xl">{name}</h2>

@@ -6,13 +6,15 @@ import AllJobsTable from "./AllJobsTable";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import jobImg from "../../assets/images/job4.jpg";
 import { Helmet } from "react-helmet-async";
-import NoDataFound from "../../components/NoDataFound/NoDataFound";
+import useAuth from "../../hooks/useAuth";
 
 const AllJobs = () => {
+  const { homeSearchFiled, homeSearchJobTypes } = useAuth();
   const axios = useAxios();
-  const [selectedJobCategory, setSelectedJobCategory] = useState("");
+  const [selectedJobCategory, setSelectedJobCategory] =
+    useState(homeSearchJobTypes);
   const [selectedHandleSort, setSelectedHandleSort] = useState("");
-  const [searchfield, setSearchfield] = useState("");
+  const [searchfield, setSearchfield] = useState(homeSearchFiled);
   const [pages, setPages] = useState(1);
   const {
     isLoading,
@@ -88,6 +90,7 @@ const AllJobs = () => {
                 <div>
                   <div>
                     <input
+                      defaultValue={homeSearchFiled ? homeSearchFiled : ""}
                       onBlur={(e) => setSearchfield(e.target.value)}
                       className="input w-28 md:w-36 lg:w-full input-bordered join-item focus:outline-0 dark:bg-gray-800 dark:border-gray-300"
                       placeholder="Job Title / Keywords"
@@ -109,6 +112,7 @@ const AllJobs = () => {
                 </h2>
                 <div className="w-52">
                   <select
+                    defaultValue={homeSearchJobTypes ? homeSearchJobTypes : ""}
                     onChange={handleJobCategory}
                     className="select border-job-primary w-full select-bordered join-item focus:outline-0 dark:bg-gray-900 dark:border-gray-600"
                   >

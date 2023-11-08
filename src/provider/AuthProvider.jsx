@@ -18,6 +18,8 @@ const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [homeSearchFiled, setHomeSearchFiled] = useState("");
+  const [homeSearchJobTypes, setHomeSearchJobTypes] = useState("");
   const googleProvider = new GoogleAuthProvider();
   const axios = useAxios();
 
@@ -110,6 +112,10 @@ const AuthProvider = ({ children }) => {
     googleLogin,
     logOut,
     userProfile,
+    homeSearchFiled,
+    setHomeSearchFiled,
+    setHomeSearchJobTypes,
+    homeSearchJobTypes
   };
   return (
     <HelmetProvider>

@@ -1,4 +1,5 @@
 import useAuth from "../../hooks/useAuth";
+import logoFav from "../../assets/logo/companyLogo.jpg";
 import logo from "../../assets/logo/dreamjoblogo.png";
 import logoDark from "../../assets/logo/dreamjoblogofordark.png";
 import { FiSend } from "react-icons/fi";
@@ -82,6 +83,7 @@ const JobDetails = () => {
     jobPostingDate,
     jobDescription,
     userEmail,
+    companyLogo
   } = jobDetailsById;
 
   const handleSendMessage = (e) => {
@@ -188,15 +190,15 @@ const JobDetails = () => {
               <div className="flex-1">
                 <div className="flex flex-col md:flex-row md:gap-8 gap-4 items-center">
                   <div className="w-28 h-28  rounded-full border-2  border-job-primary">
-                    {user?.photoURL ? (
+                    {companyLogo ? (
                       <img
                         className="w-full h-full object-cover rounded-full"
-                        src={user?.photoURL}
+                        src={companyLogo}
                       />
                     ) : (
                       <img
                         className="w-full h-full object-cover rounded-full"
-                        src="https://i.ibb.co/MPpqQSM/user.png"
+                        src={logoFav}
                       />
                     )}
                   </div>
