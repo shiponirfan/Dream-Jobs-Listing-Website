@@ -11,7 +11,7 @@ const MyJobs = () => {
   const { isLoading, data: myJobs } = useQuery({
     queryKey: ["jobsByEmail"],
     queryFn: async () => {
-      const res = await axios.get(`/jobs?email=${user.email}`);
+      const res = await axios.get(`/my-jobs?email=${user.email}`);
       return res.data;
     },
   });

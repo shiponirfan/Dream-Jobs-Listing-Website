@@ -11,12 +11,14 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { app } from "../config/firebase.config";
+import useAxios from "../hooks/useAxios";
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const googleProvider = new GoogleAuthProvider();
+  const axios = useAxios();
 
   // Dark Mode Theme
   const [theme, setTheme] = useState(
@@ -71,14 +73,30 @@ const AuthProvider = ({ children }) => {
 
   // Logged In Users
   useEffect(() => {
-    const unSubscribe = onAuthStateChanged(auth, (user) => {
-      setUser(user);
+    const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      setLoading(true);
+      // JWT Token
+      const userEmail = currentUser?.email || user?.email;
+      const loggedUser = { email: userEmail };
+      if (userEmail) {
+        axios.post("/auth/access-token", loggedUser).then((res) => {
+          console.log(res.data);
+          setLoading(false);
+        });
+      } else {
+        axios.post("/auth/access-cancel", loggedUser).then((res) => {
+          console.log(res.data);
+          logOut().then(() => {});
+          setLoading(false);
+        });
+      }
       setLoading(false);
     });
     return () => {
       unSubscribe();
     };
-  }, []);
+  }, [axios, user]);
 
   const AuthInfo = {
     user,
