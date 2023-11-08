@@ -3,7 +3,7 @@ import { getAuth, signOut } from "firebase/auth";
 import { app } from "../config/firebase.config";
 
 const instance = axios.create({
-  baseURL: "http://localhost:5000/api/v1",
+  baseURL: "https://dream-jobs-listing-website-server-side.vercel.app/api/v1",
   withCredentials: true,
 });
 const auth = getAuth(app);

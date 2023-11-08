@@ -7,11 +7,14 @@ import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import AppliedJobsCard from "./AppliedJobsCard";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
+import { usePDF } from "react-to-pdf";
+import { MdPictureAsPdf } from "react-icons/md";
 const AppliedJobs = () => {
   const axios = useAxios();
   const { user } = useAuth();
   const [selectedJobCategory, setSelectedJobCategory] = useState("");
   const [selectedHandleSort, setSelectedHandleSort] = useState("");
+  const { toPDF, targetRef } = usePDF({ filename: "applied-jobs.pdf" });
   const {
     isLoading,
     refetch,
@@ -42,6 +45,7 @@ const AppliedJobs = () => {
   if (isLoading) {
     return <LoadingSpinner />;
   }
+
   return (
     <div>
       <Helmet>
@@ -56,13 +60,12 @@ const AppliedJobs = () => {
           </li>
         }
       ></Breadcrumbs>
+
       <div className="dark:bg-gray-800 pt-14">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="py-6 px-6 border border-job-primary rounded-lg  flex justify-between items-center gap-8  dark:bg-gray-900 dark:text-white">
             <div className="">
-              <h2 className="text-2xl font-bold">
-                View All Your Job Applications
-              </h2>
+              <h2 className="text-2xl font-bold">Applied Jobs</h2>
             </div>
             <div className="flex justify-between items-center gap-8">
               <div className="flex justify-between items-center gap-2">
@@ -93,11 +96,19 @@ const AppliedJobs = () => {
                   </select>
                 </div>
               </div>
+              <div>
+                <button
+                  onClick={() => toPDF()}
+                  className="bg-job-primary dark:hover:bg-white dark:hover:text-black hover:bg-black hover:scale-105 duration-300 text-white font-medium  text-base py-3 px-4 rounded-md flex justify-center items-center"
+                >
+                  <MdPictureAsPdf className="mr-2" /> Save as PDF
+                </button>
+              </div>
             </div>
           </div>
         </div>
-        <div className="xl:py-20 lg:py-14 py-10 dark:bg-gray-800">
-          <div className="container mx-auto px-6 lg:px-8">
+        <div ref={targetRef} className=" dark:bg-gray-800 ">
+          <div className="container mx-auto px-6 lg:px-8 xl:py-20 lg:py-14 py-10">
             {appliedJobs.map((job) => (
               <AppliedJobsCard key={job._id} job={job}></AppliedJobsCard>
             ))}

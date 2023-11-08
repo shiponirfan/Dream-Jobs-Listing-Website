@@ -84,7 +84,7 @@ const Routes = createBrowserRouter([
           </PrivateRoutes>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/api/v1/job/${params.id}`),
+          fetch(`https://dream-jobs-listing-website-server-side.vercel.app/job/${params.id}`),
       },
     ],
   },
