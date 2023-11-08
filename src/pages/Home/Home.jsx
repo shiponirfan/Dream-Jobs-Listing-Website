@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import HomeBanner from "../../components/HomeBanner/HomeBanner";
 import JobByTab from "../../components/JobByTab/JobByTab";
+import WorkingProcess from "../../components/WorkingProcess/WorkingProcess";
 
 const Home = () => {
   return (
@@ -10,6 +11,7 @@ const Home = () => {
       </Helmet>
       <HomeBanner />
       <JobByTab />
+      <WorkingProcess/>
     </div>
   );
 };

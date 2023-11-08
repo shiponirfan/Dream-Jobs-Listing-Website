@@ -4,7 +4,7 @@ import logoDark from "../../assets/logo/dreamjoblogofordark.png";
 import { FiSend } from "react-icons/fi";
 import { RiCalendarEventLine, RiMoneyDollarCircleLine } from "react-icons/ri";
 import Swal from "sweetalert2";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import useAxios from "../../hooks/useAxios";
 import toast from "react-hot-toast";
@@ -61,6 +61,14 @@ const JobDetails = () => {
 
   if (isLoading) {
     return <LoadingSpinner />;
+  }
+
+  function ScrollToTopOnMount() {
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
+
+    return null;
   }
 
   const {
@@ -162,6 +170,7 @@ const JobDetails = () => {
 
   return (
     <div>
+      <ScrollToTopOnMount/>
       <Helmet>
         <title>{jobTitle ? jobTitle : "Job Details"} - Dream Jobs</title>
       </Helmet>

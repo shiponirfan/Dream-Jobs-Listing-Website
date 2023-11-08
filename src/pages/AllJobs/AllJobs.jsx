@@ -53,8 +53,17 @@ const AllJobs = () => {
     }
   };
 
+  function ScrollToTopOnMount() {
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
+
+    return null;
+  }
+
   return (
     <div>
+      <ScrollToTopOnMount />
       <Helmet>
         <title>All Jobs - Dream Jobs</title>
       </Helmet>
@@ -68,61 +77,69 @@ const AllJobs = () => {
         }
       ></Breadcrumbs>
 
-      <div className="container mx-auto px-6 lg:px-8 pt-16">
-        <div className="py-6 px-6 border border-job-primary rounded-lg flex-row-reverse flex justify-between items-center gap-8  dark:bg-gray-900 dark:text-white">
-          <div className="flex justify-between items-center gap-2">
-            <h2 className="font-semibold text-xl">Search:</h2>
-            <div className="join">
-              <div>
+      <div className="dark:bg-gray-800">
+        <div className="container mx-auto px-6 lg:px-8 pt-16 ">
+          <div className="py-6 px-6 border border-job-primary rounded-lg  flex justify-between items-center flex-col-reverse md:flex-row-reverse gap-2 2xl:gap-8  dark:bg-gray-900 dark:text-white">
+            <div className="flex flex-col lg:flex-row justify-between items-center gap-2">
+              <h2 className="font-semibold xl:text-base 2xl:text-xl text-sm">
+                Search:
+              </h2>
+              <div className="join">
                 <div>
-                  <input
-                    onBlur={(e) => setSearchfield(e.target.value)}
-                    className="input w-28 md:w-36 lg:w-full input-bordered join-item focus:outline-0 dark:bg-gray-800 dark:border-gray-300"
-                    placeholder="Job Title / Keywords"
-                  />
+                  <div>
+                    <input
+                      onBlur={(e) => setSearchfield(e.target.value)}
+                      className="input w-28 md:w-36 lg:w-full input-bordered join-item focus:outline-0 dark:bg-gray-800 dark:border-gray-300"
+                      placeholder="Job Title / Keywords"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <button className="btn join-item bg-job-primary hover:bg-green-600 text-white dark:border-job-primary">
+                    Search
+                  </button>
                 </div>
               </div>
-
-              <div>
-                <button className="btn join-item bg-job-primary hover:bg-green-600 text-white dark:border-job-primary">
-                  Search
-                </button>
-              </div>
             </div>
-          </div>
-          <div className="flex justify-between items-center gap-8">
-            <div className="flex justify-between items-center gap-2">
-              <h2 className="font-semibold text-xl">Filter By Job:</h2>
-              <div className="w-52">
-                <select
-                  onChange={handleJobCategory}
-                  className="select border-job-primary w-full select-bordered join-item focus:outline-0 dark:bg-gray-900 dark:border-gray-600"
-                >
-                  <option value="">All Jobs</option>
-                  <option value="remote-job">Remote Job</option>
-                  <option value="on-site-job">On Site Job</option>
-                  <option value="hybrid">Hybrid</option>
-                  <option value="part-time">Part Time</option>
-                </select>
+            <div className="flex flex-col md:flex-row justify-between items-center gap-2 2xl:gap-8">
+              <div className="flex flex-col lg:flex-row justify-between items-center gap-2">
+                <h2 className="font-semibold xl:text-base 2xl:text-xl text-sm">
+                  Filter By Job:
+                </h2>
+                <div className="w-52">
+                  <select
+                    onChange={handleJobCategory}
+                    className="select border-job-primary w-full select-bordered join-item focus:outline-0 dark:bg-gray-900 dark:border-gray-600"
+                  >
+                    <option value="">All Jobs</option>
+                    <option value="remote-job">Remote Job</option>
+                    <option value="on-site-job">On Site Job</option>
+                    <option value="hybrid">Hybrid</option>
+                    <option value="part-time">Part Time</option>
+                  </select>
+                </div>
               </div>
-            </div>
-            <div className="flex justify-between items-center gap-2">
-              <h2 className="font-semibold text-xl">Sort By Salary Range:</h2>
-              <div className="w-52">
-                <select
-                  onChange={handleSortValue}
-                  className="select border-job-primary w-full select-bordered join-item focus:outline-0 dark:bg-gray-900 dark:border-gray-600"
-                >
-                  <option value="">Salary Range</option>
-                  <option value="-1">High To Low</option>
-                  <option value="1">Low To High</option>
-                </select>
+              <div className="flex flex-col lg:flex-row justify-between items-center gap-2">
+                <h2 className="font-semibold xl:text-base 2xl:text-xl text-sm">
+                  Sort By Salary Range:
+                </h2>
+                <div className="w-52">
+                  <select
+                    onChange={handleSortValue}
+                    className="select border-job-primary w-full select-bordered join-item focus:outline-0 dark:bg-gray-900 dark:border-gray-600"
+                  >
+                    <option value="">Salary Range</option>
+                    <option value="-1">High To Low</option>
+                    <option value="1">Low To High</option>
+                  </select>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div className="dark:bg-gray-900 dark:text-white">
+      <div className="dark:bg-gray-800 dark:text-white">
         <div className="container mx-auto px-6 lg:px-8 py-16">
           {isLoading ? (
             <LoadingSpinner />
@@ -139,7 +156,7 @@ const AllJobs = () => {
                     <div className="join">
                       <button
                         onClick={handlePrevious}
-                        className="join-item btn hover:bg-job-primary hover:text-white"
+                        className="join-item btn dark:bg-gray-900 dark:hover:bg-job-primary dark:text-white hover:bg-job-primary hover:text-white"
                       >
                         «
                       </button>
@@ -153,9 +170,9 @@ const AllJobs = () => {
                               onClick={() => setPages(pagination)}
                               className={` ${
                                 pagination === pages
-                                  ? "bg-job-primary text-white"
+                                  ? "bg-job-primary dark:bg-job-primary text-white"
                                   : ""
-                              } join-item btn hover:bg-job-primary hover:text-white`}
+                              } join-item btn dark:bg-gray-900 dark:hover:bg-job-primary dark:text-white hover:bg-job-primary hover:text-white`}
                             >
                               {pagination}
                             </button>
@@ -163,7 +180,7 @@ const AllJobs = () => {
                         })}
                       <button
                         onClick={handleNext}
-                        className="join-item btn hover:bg-job-primary hover:text-white"
+                        className="join-item btn dark:bg-gray-900 dark:hover:bg-job-primary dark:text-white hover:bg-job-primary hover:text-white"
                       >
                         »
                       </button>

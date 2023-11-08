@@ -7,6 +7,7 @@ import blog3 from "../../assets/images/blog1.2.jpg";
 import { RiCalendarEventLine } from "react-icons/ri";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
+import { useEffect } from "react";
 const BlogDetailsOne = () => {
   const handleSendMessage = (e) => {
     e.preventDefault();
@@ -17,8 +18,16 @@ const BlogDetailsOne = () => {
       confirmButtonColor: "#00BF63",
     });
   };
+  function ScrollToTopOnMount() {
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
+
+    return null;
+  }
   return (
     <div>
+      <ScrollToTopOnMount/>
       <Helmet>
         <title>What is an access token and refresh token? - Blog</title>
       </Helmet>

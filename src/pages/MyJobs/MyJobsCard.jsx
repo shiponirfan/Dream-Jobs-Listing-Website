@@ -49,7 +49,7 @@ const MyJobsCard = ({ job }) => {
   };
   return (
     <div>
-      <div className="flex flex-col dark:bg-gray-800 dark:text-white lg:flex-row gap-4 lg:gap-8 p-6 mb-4 lg:items-center rounded-lg shadow-lg dark:shadow-gray-950 border border-transparent dark:border dark:border-job-primary hover:shadow-job-primary/50 duration-300 text-base xl:text-lg">
+      <div className="flex flex-col dark:bg-gray-800 dark:text-white lg:flex-row gap-4 lg:gap-8 p-6 mb-4 lg:items-center rounded-lg shadow-lg dark:shadow-gray-950 border dark:border dark:border-job-primary hover:shadow-job-primary/50 duration-300 text-base xl:text-lg">
         <div className="xl:w-64 lg:w-40  h-56 lg:h-32">
           <Link to={`/job/${_id}`}>
             <img
@@ -95,7 +95,7 @@ const MyJobsCard = ({ job }) => {
         <div className="justify-end">
           <div className="space-y-5 flex flex-col">
             <Link to={`/update/${_id}`}>
-              <button className="bg-job-primary flex-1 dark:hover:bg-white dark:hover:text-black hover:bg-black hover:scale-105 duration-300 text-white font-medium  text-lg  py-3 xl:px-6 px-3 rounded-md flex justify-center items-center">
+              <button className="bg-job-primary flex-1 w-full lg:w-auto dark:hover:bg-white dark:hover:text-black hover:bg-black hover:scale-105 duration-300 text-white font-medium  text-lg  py-3 xl:px-6 px-3 rounded-md flex justify-center items-center">
                 <BsClipboardCheckFill className="mr-2" /> Update
               </button>
             </Link>
