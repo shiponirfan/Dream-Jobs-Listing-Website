@@ -8,7 +8,7 @@ import AppliedJobsCard from "./AppliedJobsCard";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { usePDF } from "react-to-pdf";
-import { MdPictureAsPdf } from "react-icons/md";
+import { FaFilePdf } from "react-icons/fa6";
 const AppliedJobs = () => {
   const axios = useAxios();
   const { user } = useAuth();
@@ -101,7 +101,7 @@ const AppliedJobs = () => {
                   onClick={() => toPDF()}
                   className="bg-job-primary dark:hover:bg-white dark:hover:text-black hover:bg-black hover:scale-105 duration-300 text-white font-medium  text-base py-3 px-4 rounded-md flex justify-center items-center"
                 >
-                  <MdPictureAsPdf className="mr-2" /> Save as PDF
+                  Save as PDF <FaFilePdf className="ml-2" />
                 </button>
               </div>
             </div>

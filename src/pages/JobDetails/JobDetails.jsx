@@ -11,6 +11,7 @@ import toast from "react-hot-toast";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import emailjs from "@emailjs/browser";
 const JobDetails = () => {
   const params = useParams();
   const axios = useAxios();
@@ -124,12 +125,45 @@ const JobDetails = () => {
     setAppliedJobLoader(form);
     setApplicantCount(_id);
     mutate();
+
+    const templateParams = {
+      to_email: applyUserEmail,
+      subject: "Job Application Confirmation",
+      message: `
+        Dear ${applyUserName},
+  
+        We are writing to confirm that we have received your job application for the ${jobTitle} at Dream Jobs. Thank you for your interest in joining our team.
+  
+        Your application is currently under review, and our hiring team will carefully assess your qualifications. Please stay tuned for further updates and information about the status of your application.
+  
+        If you have any questions or need additional information about the application process, please don't hesitate to reach out to our HR department at admin@dreamjobs.com.
+  
+        We appreciate your interest in our organization and look forward to the possibility of working with you. Best of luck with your application!
+  
+        Sincerely,
+        Dream Jobs
+      `,
+    };
+
+    emailjs
+      .send(
+        "service_nzx4f3c",
+        "template_39o5mvg",
+        templateParams,
+        "otPToC7jpVlYUG5mj"
+      )
+      .then((response) => {
+        console.log("Confirmation email sent successfully!", response);
+      })
+      .catch((error) => {
+        console.error("Error sending confirmation email:", error);
+      });
   };
 
   return (
     <div>
       <Helmet>
-        <title>{jobTitle ? jobTitle : 'Job Details'} - Dream Jobs</title>
+        <title>{jobTitle ? jobTitle : "Job Details"} - Dream Jobs</title>
       </Helmet>
       <div className="w-full h-[500px]">
         <img
